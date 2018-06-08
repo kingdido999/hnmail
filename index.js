@@ -33,7 +33,6 @@ async function fetchArticles (includes) {
   )
   const page = await browser.newPage()
 
-  // const url = `${BASE_URL}&query=${query}`
   await page.goto(BASE_URL, { waitUntil: 'networkidle2' })
 
   let results = []
