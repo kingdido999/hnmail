@@ -60,6 +60,21 @@ class HackerNewsCrawler {
 
     return results
   }
+
+  formatToHTML (results) {
+    const html = results.reduce((acc, result) => {
+      const { keyword, articles } = result
+
+      const articlesHtml = articles.reduce((acc, article) => {
+        const { title, link, domain } = article
+        return `${acc}<p><a href=${link}>${title}</a><small> (${domain}) </small></p>`
+      }, '')
+
+      return `${acc}<h2>${keyword}</h2>${articlesHtml}`
+    }, '')
+
+    return html
+  }
 }
 
 module.exports = HackerNewsCrawler
