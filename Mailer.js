@@ -3,11 +3,7 @@ const mg = require('nodemailer-mailgun-transport')
 const { MAILGUN_API_KEY, MAILGUN_DOMAIN } = require('./.env')
 
 class Mailer {
-  constructor (html) {
-    this.html = html
-  }
-
-  async send () {
+  async send (receivers, html) {
     const transporter = nodemailer.createTransport(
       mg({
         auth: {
@@ -19,10 +15,10 @@ class Mailer {
 
     // setup email data with unicode symbols
     let mailOptions = {
-      from: 'info@hnmail.io', // sender address
-      to: 'kingdido999@gmail.com', // list of receivers
-      subject: 'HN Mail', // Subject line
-      html: this.html
+      from: 'HN Mail <info@hnmail.io>', // sender address
+      to: receivers, // list of receivers
+      subject: 'Hacker News Weekly', // Subject line
+      html: html
     }
 
     try {

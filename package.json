@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "DEBUG=koa* nodemon app.js"
+    "start": "DEBUG=koa* nodemon app.js",
+    "test": "node test.js"
   },
   "dependencies": {
     "ejs": "^2.6.1",

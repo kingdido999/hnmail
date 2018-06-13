@@ -17,8 +17,8 @@ const Mailer = require('./Mailer')
       return `${acc}<h2>${keyword}</h2>${articlesHtml}`
     }, '')
 
-    const mailer = new Mailer(html)
-    await mailer.send()
+    const mailer = new Mailer()
+    await mailer.send(['kingdido999@gmail.com'], html)
   } catch (err) {
     console.log(err)
   }
