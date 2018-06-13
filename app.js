@@ -59,7 +59,11 @@ const PORT = 3000
 app.listen(PORT)
 console.log(`Listening on port: ${PORT}`)
 
-// Every Friday at 8AM
-// schedule.scheduleJob('0 8 * * 5', function () {
 // TODO
+// Every Friday at 8AM
+// 1. Get all topics from DB.
+// 2. Use HackerNewsCrawler to fetch articles for all topics.
+// 3. Get each user's topics, select all related articles,
+// generate html content and send email.
+// schedule.scheduleJob('0 8 * * 5', function () {
 // })
