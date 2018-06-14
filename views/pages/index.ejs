@@ -6,7 +6,33 @@
 </head>
 
 <body>
-  <section class="hero is-large yellow-gradient">
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">HN Mail</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Hacker News Tailored For You</h1>
+    <h2>
+      Identify a few topics interest you the most and start receiving a curated list of articles every week.
+    </h2>
+
+    <form action="/subscribe" method="post">
+      <input type="text" name="topics" placeholder="Topics" />
+      <input type="email" name="email" placeholder="Email" />
+      <input type="submit" value="Subscribe">
+    </form>
+  </header>
+</body>
+
+<!-- <body> -->
+<!-- <section class="hero yellow-gradient">
 
     <div class="hero-head">
       <nav class="navbar">
@@ -20,12 +46,10 @@
       </nav>
     </div>
 
-    <!-- Hero content: will be in the middle -->
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title has-text-white is-spaced is-1">
-          <p>Hacker News</p>
-          <p>Tailored For You</p>
+          <p>Hacker News Tailored For You</p>
         </h1>
         <h2 class="subtitle has-text-white">
           <p>Identify a few topics interest you the most and</p>
@@ -37,7 +61,6 @@
 
   <section class="section" id="capture">
     <div class="container">
-      <h2 class="title is-3 has-text-centered">Join HN Mail</h2>
       <form action="/subscribe" method="POST">
         <div class="field is-horizontal">
           <div class="field-label">
@@ -46,7 +69,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control has-icons-left has-icons-right">
-                <textarea class="textarea" name="topics" placeholder="blockchain, machine learning, javascript"></textarea>
+                <textarea class="textarea" name="topics" placeholder="E.g., artificial intelligence, machine learning, blockchain, python, javascript"></textarea>
               </div>
             </div>
           </div>
@@ -70,7 +93,6 @@
 
         <div class="field is-horizontal">
           <div class="field-label">
-            <!-- Left empty for spacing -->
           </div>
           <div class="field-body">
             <div class="field">
@@ -86,7 +108,7 @@
     </div>
   </section>
 
-  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-</body>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script> -->
+<!-- </body> -->
 
 </html>

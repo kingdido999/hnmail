@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  height: 100%;
+}
+
+header {
+  height: 100%;
+  background: linear-gradient(#ffa600,#f5ca0a);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+
+header h2 {
+  font-family: 'Roboto Mono', serif;
+  font-size: 1.2rem;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+}
+
+nav a {
+  padding: 2rem;
+  font-size: 1.2rem;
+  max-width: 140px;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+  color: white;
+}
+
+form {
+  margin: 2rem;
+}
+
+input {
+  font-family: 'Roboto Mono', serif;
+  padding: 8px;
+  margin: 0 4px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  font-size: 1rem;
+  box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);
+}
+
+input[type='submit'] {
+  cursor: pointer;
+  background: #3ecf8e;
+  border: 1px solid #3ecf8e;
+  color: white;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.subtitle {
+  font-family: 'Roboto Mono', monospace;
+}
+
+#capture .container {
+  max-width: 400px;
+}
+
+.yellow-gradient {
+  background: linear-gradient(#FF742B, #f5ca0a);
+}
