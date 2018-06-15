@@ -1,0 +1,50 @@
+html {
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,sans-serif;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 3px dashed #eee;
+}
+
+.topic {
+  color: #ff6600;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+.article {
+  margin-bottom: 1rem;
+}
+
+.title a {
+  color: hsl(210,10%,10%);
+  border-bottom: 2px solid hsl(0,0%,90%);
+  line-height: 1.5rem;
+  text-decoration: none;
+}
+
+.info {
+  color: #828282;
+}
+
+.info a {
+  color: #828282;
+  text-decoration: none;
+}
+
+.signature {
+  margin: 2rem 0;
+}
+
+footer {
+  border-top: 2px solid hsl(0,0%,90%);
+  color: #828282;
+}
+
+footer a {
+  color: #828282;
+}

@@ -3,11 +3,15 @@
 }
 
 html {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,sans-serif;
 }
 
 body {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 header {
@@ -32,7 +36,6 @@ nav a {
   font-size: 1.2rem;
   max-width: 140px;
   font-weight: bold;
-  text-decoration: none;
   display: flex;
   align-items: flex-start;
   color: white;
@@ -50,16 +53,19 @@ input, textarea, button {
   padding: 1rem;
   margin: 1rem;
   border-radius: 4px;
-  border: 1px solid #fff;
+  border: 1px solid transparent;
   box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);
 }
 
-button[type='submit'] {
+button {
   cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+button[type='submit'] {
   background: #3ecf8e;
   border: 1px solid #3ecf8e;
   color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-weight: 600;
 }

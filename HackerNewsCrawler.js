@@ -1,15 +1,12 @@
 const puppeteer = require('puppeteer')
+const { isLocal } = require('./.env')
 
 const BASE_URL =
   'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
 
 class HackerNewsCrawler {
-  constructor (debug) {
-    this.debug = debug
-  }
-
   async fetchArticlesByTopics (topics) {
-    let options = this.debug
+    let options = isLocal
       ? {
         headless: false,
         devtools: true
@@ -42,6 +39,8 @@ class HackerNewsCrawler {
             return {
               title: link.text,
               link: link.href,
+              authorLink: div.querySelector('.author').parentNode.href,
+              hnLink: div.querySelector('.comments').parentNode.href,
               domain: link.href.match(/:\/\/(.[^/]+)/)[1],
               points: Number(points.textContent.split(' ')[0]),
               author: author.textContent,
@@ -49,12 +48,13 @@ class HackerNewsCrawler {
               comments: comments.textContent
             }
           })
+          .sort((a, b) => b.points - a.points)
           .filter(
             (item, index, items) =>
               index === items.findIndex(t => t.title === item.title)
           )
           .filter(({ points }) => points > 0)
-          .slice(10)
+          .slice(0, 7)
       }, resultsSelector)
 
       await page.focus(inputSelector)
