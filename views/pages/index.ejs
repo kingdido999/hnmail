@@ -19,13 +19,12 @@
     </nav>
 
     <h1>Hacker News Tailored For You</h1>
-    <h2>
-      Identify a few topics interest you the most and start receiving a curated list of articles every week.
-    </h2>
 
     <form action="/subscribe" method="post">
-      <input type="text" name="topics" placeholder="Topics" />
-      <input type="email" name="email" placeholder="Email" />
+      <label>I'm interested in...</label>
+      <textarea name="topics" rows="4" placeholder="E.g., artificial intelligence, blockchain, javascript"></textarea>
+      <label>And deliver them to</label>
+      <input type="email" name="email" placeholder="fan@hnmail.io" />
       <input type="submit" value="Subscribe">
     </form>
   </header>
