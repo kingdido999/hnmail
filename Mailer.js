@@ -3,7 +3,7 @@ const mg = require('nodemailer-mailgun-transport')
 const { MAILGUN_API_KEY, MAILGUN_DOMAIN } = require('./.env')
 
 class Mailer {
-  async send (receivers, html) {
+  async send (receivers, context) {
     const transporter = nodemailer.createTransport(
       mg({
         auth: {
@@ -18,7 +18,11 @@ class Mailer {
       from: 'HN Mail <info@hnmail.io>', // sender address
       to: receivers, // list of receivers
       subject: 'Hacker News Weekly', // Subject line
-      html: html
+      template: {
+        name: 'views/email/index.pug',
+        engine: 'pug',
+        context
+      }
     }
 
     try {

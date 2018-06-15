@@ -4,7 +4,6 @@ const Router = require('koa-router')
 const views = require('koa-views')
 const koaBody = require('koa-body')
 const mongoose = require('mongoose')
-const serve = require('koa-static')
 // const schedule = require('node-schedule')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
@@ -13,8 +12,7 @@ mongoose.connect('mongodb://localhost/hnmail')
 
 const app = new Koa()
 
-app.use(serve('assets'))
-app.use(views(path.join(__dirname, '/views'), { extension: 'ejs' }))
+app.use(views(path.join(__dirname, '/views'), { extension: 'pug' }))
 app.use(koaBody())
 
 const router = new Router()

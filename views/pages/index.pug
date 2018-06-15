@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title HN Mail
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand:400,700")
+    style
+      include index.css
+  body
+    header
+      nav
+        ul
+          li
+            a(href='#') HN Mail
+
+      h1
+        span Hacker News
+        br
+        span Tailored For You
+
+      form(action="/subscribe", method="post")
+        label I'm interested in
+        textarea(name="topics", rows="3", placeholder="E.g., AI, blockchain, startup, javascript")
+        label Deliver them to
+        input(type="email" name="email" placeholder="fan@hnmail.io")
+        button(type="submit") Subscribe

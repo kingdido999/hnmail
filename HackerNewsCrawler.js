@@ -4,8 +4,19 @@ const BASE_URL =
   'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
 
 class HackerNewsCrawler {
+  constructor (debug) {
+    this.debug = debug
+  }
+
   async fetchArticlesByTopics (topics) {
-    const browser = await puppeteer.launch()
+    let options = this.debug
+      ? {
+        headless: false,
+        devtools: true
+      }
+      : {}
+
+    const browser = await puppeteer.launch(options)
     const page = await browser.newPage()
 
     await page.goto(BASE_URL, { waitUntil: 'networkidle2' })
@@ -66,11 +77,11 @@ class HackerNewsCrawler {
       const { keyword, articles } = result
 
       const articlesHtml = articles.reduce((acc, article) => {
-        const { title, link, domain } = article
-        return `${acc}<p><a href=${link}>${title}</a><small> (${domain}) </small></p>`
+        const { title, link } = article
+        return `${acc}<p><a href=${link}>${title}</a></p>`
       }, '')
 
-      return `${acc}<h2>${keyword}</h2>${articlesHtml}`
+      return `${acc}<h2>${keyword.toUpperCase()}</h2>${articlesHtml}`
     }, '')
 
     return html
