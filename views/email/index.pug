@@ -8,9 +8,9 @@ html(lang="en")
     style
       include index.css
   body
-    each topic in topics
-      h2= topic.keyword.toUpperCase()
+    each topic in Object.keys(topics)
+      h2= topic.toUpperCase()
       ul
-        each article in topic.articles
+        each article in topics[topic]
           li
             a(href=article.link)= article.title

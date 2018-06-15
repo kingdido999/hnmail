@@ -21,7 +21,7 @@ class HackerNewsCrawler {
 
     await page.goto(BASE_URL, { waitUntil: 'networkidle2' })
 
-    let results = []
+    let results = {}
 
     for (let i = 0; i < topics.length; i++) {
       const query = topics[i]
@@ -36,15 +36,20 @@ class HackerNewsCrawler {
         return divs
           .map(div => {
             const link = div.querySelector('a')
-            const points = div
-              .querySelector('ul')
-              .querySelector('span')
-              .textContent.split(' ')[0]
+            const itemInfos = div.querySelector('ul').querySelectorAll('span')
+            const [points, author, date, comments] = itemInfos
+            // const points = itemInfos
+            //   .querySelector('span')
+            //   .textContent.split(' ')[0]
+
             return {
               title: link.text,
               link: link.href,
               domain: link.href.match(/:\/\/(.[^/]+)/)[1],
-              points: Number(points)
+              points: Number(points.textContent.split(' ')[0]),
+              author: author.textContent,
+              date: date.textContent,
+              comments: comments.textContent
             }
           })
           .filter(
@@ -61,10 +66,7 @@ class HackerNewsCrawler {
         await page.keyboard.press('Backspace')
       }
 
-      results.push({
-        keyword: query,
-        articles
-      })
+      results[query] = articles
     }
 
     await browser.close()

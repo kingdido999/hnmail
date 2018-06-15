@@ -6,6 +6,7 @@ const Mailer = require('../Mailer')
 
   try {
     const results = await hnCrawler.fetchArticlesByTopics(topics)
+    console.log(results)
 
     const mailer = new Mailer()
     await mailer.send(['kingdido999@gmail.com'], { topics: results })

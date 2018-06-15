@@ -4,7 +4,7 @@ const Router = require('koa-router')
 const views = require('koa-views')
 const koaBody = require('koa-body')
 const mongoose = require('mongoose')
-// const schedule = require('node-schedule')
+const schedule = require('node-schedule')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
 
@@ -70,6 +70,23 @@ console.log(`Listening on port: ${PORT}`)
 // Every Friday at 8AM
 // 1. Get all topics from DB.
 // 2. Use HackerNewsCrawler to fetch articles for all topics.
-// 3. Get each user's topics, select all related articles,
-// generate html content and send email.
-// schedule.scheduleJob('0 8 * * 5', sendEmails)
+// 3. Get each user's topics, select all related articles and send email.
+schedule.scheduleJob('0 8 * * 5', sendEmails)
+
+async function sendEmails () {
+  const topics = await Topic.find({}).exec()
+  const users = await User.find({}).exec()
+  const topicNames = topics.map(topic => topic.name)
+  const hnCrawler = new HackerNewsCrawler()
+  const mailer = new Mailer()
+
+  try {
+    const results = await hnCrawler.fetchArticlesByTopics(topicNames)
+    users.forEach(async user => {
+      const userTopics = R.pickAll(user.topics, results)
+      await mailer.send(user.email, { topics: userTopics })
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
