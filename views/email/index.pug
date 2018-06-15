@@ -10,7 +10,10 @@ html(lang="en")
   body
     each topic in Object.keys(topics)
       h2= topic.toUpperCase()
-      ul
+      .articles
         each article in topics[topic]
-          li
-            a(href=article.link)= article.title
+          .article
+            .title
+              a(href=article.link)= article.title
+            .info
+              span.points= article.points

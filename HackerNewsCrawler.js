@@ -38,9 +38,6 @@ class HackerNewsCrawler {
             const link = div.querySelector('a')
             const itemInfos = div.querySelector('ul').querySelectorAll('span')
             const [points, author, date, comments] = itemInfos
-            // const points = itemInfos
-            //   .querySelector('span')
-            //   .textContent.split(' ')[0]
 
             return {
               title: link.text,

@@ -1,14 +1,14 @@
 const nodemailer = require('nodemailer')
 const mg = require('nodemailer-mailgun-transport')
-const { MAILGUN_API_KEY, MAILGUN_DOMAIN } = require('./.env')
+const { mailgun } = require('./.env')
 
 class Mailer {
   async send (receivers, context) {
     const transporter = nodemailer.createTransport(
       mg({
         auth: {
-          api_key: MAILGUN_API_KEY,
-          domain: MAILGUN_DOMAIN
+          api_key: mailgun.apiKey,
+          domain: mailgun.domain
         }
       })
     )
