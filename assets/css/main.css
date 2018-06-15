@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  background: linear-gradient(#ffa600,#f5ca0a);
+  background: linear-gradient(#ff8802,#ffdc41);
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -45,7 +45,7 @@ form {
   font-size: 1.2rem;
 }
 
-input, textarea {
+input, textarea, button {
   font-size: 1rem;
   padding: 1rem;
   margin: 1rem;
@@ -54,11 +54,12 @@ input, textarea {
   box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);
 }
 
-input[type='submit'] {
+button[type='submit'] {
   cursor: pointer;
   background: #3ecf8e;
   border: 1px solid #3ecf8e;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  font-weight: 600;
 }
