@@ -71,21 +71,6 @@ class HackerNewsCrawler {
 
     return results
   }
-
-  formatToHTML (results) {
-    const html = results.reduce((acc, result) => {
-      const { keyword, articles } = result
-
-      const articlesHtml = articles.reduce((acc, article) => {
-        const { title, link } = article
-        return `${acc}<p><a href=${link}>${title}</a></p>`
-      }, '')
-
-      return `${acc}<h2>${keyword.toUpperCase()}</h2>${articlesHtml}`
-    }, '')
-
-    return html
-  }
 }
 
 module.exports = HackerNewsCrawler
