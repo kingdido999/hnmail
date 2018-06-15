@@ -25,14 +25,16 @@ router.get('/', async ctx => {
 
 router.post('/subscribe', async ctx => {
   const { email, topics } = ctx.request.body
-  const topicList = topics.split(',').map(topic => topic.trim())
+  const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
 
   let user = await User.findOne({ email }).exec()
+  let isNewUser = false
 
   if (user) {
     console.log('User with email: %s already exsits.', email)
     await User.update({ email }, { topics: topicList }).exec()
   } else {
+    isNewUser = true
     console.log('Saving user with email: %s', email)
     user = new User({ email, topics: topicList })
     await user.save()
@@ -43,9 +45,14 @@ router.post('/subscribe', async ctx => {
 
     if (topic) {
       console.log(`Topic ${name} already exists.`)
+
+      if (isNewUser) {
+        topic.subscriber_ids.push(user.id)
+        await topic.save()
+      }
     } else {
       console.log(`Saving topic: ${name}`)
-      topic = new Topic({ name })
+      topic = new Topic({ name, subscriber_ids: [user.id] })
       await topic.save()
     }
   })
@@ -67,5 +74,4 @@ console.log(`Listening on port: ${PORT}`)
 // 2. Use HackerNewsCrawler to fetch articles for all topics.
 // 3. Get each user's topics, select all related articles,
 // generate html content and send email.
-// schedule.scheduleJob('0 8 * * 5', function () {
-// })
+// schedule.scheduleJob('0 8 * * 5', sendEmails)

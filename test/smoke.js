@@ -1,5 +1,5 @@
-const HackerNewsCrawler = require('./HackerNewsCrawler')
-const Mailer = require('./Mailer')
+const HackerNewsCrawler = require('../HackerNewsCrawler')
+const Mailer = require('../Mailer')
 ;(async () => {
   const hnCrawler = new HackerNewsCrawler()
   const topics = ['javascript', 'interview']

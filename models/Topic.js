@@ -7,6 +7,9 @@ const topicSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
     trim: true
+  },
+  subscriber_ids: {
+    type: [String]
   }
 })
 
