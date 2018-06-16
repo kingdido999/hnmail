@@ -14,14 +14,6 @@ a {
   text-decoration: none;
 }
 
-header {
-  background: linear-gradient(#ff8802,#ffdc41);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: white;
-}
-
 nav ul {
   margin: 0;
   padding: 0;
@@ -38,7 +30,12 @@ nav a {
   font-weight: bold;
   display: flex;
   align-items: flex-start;
-  color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 form {
@@ -65,7 +62,7 @@ button {
 }
 
 button[type='submit'] {
-  background: #3ecf8e;
-  border: 1px solid #3ecf8e;
+  background: #ff6347;
+  border: 1px solid #ff6347;
   color: white;
 }
