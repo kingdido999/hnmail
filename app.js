@@ -1,6 +1,7 @@
 const path = require('path')
 const Koa = require('koa')
 const Router = require('koa-router')
+const serve = require('koa-static')
 const views = require('koa-views')
 const koaBody = require('koa-body')
 const mongoose = require('mongoose')
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost/hnmail')
 
 const app = new Koa()
 
+app.use(serve('assets'))
 app.use(views(path.join(__dirname, '/views'), { extension: 'pug' }))
 app.use(koaBody())
 

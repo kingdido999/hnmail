@@ -14,8 +14,6 @@ html(lang="en")
         ul
           li
             a(href='/') HN Mail
-          li
-            a(href='/sample') Sample
 
     main
       h1
@@ -23,12 +21,17 @@ html(lang="en")
         br
         span Tailored For You
 
-      p Too busy to catch up with stories you care the most about from Hacker News?
-      p Stop worrying and let them come to your inbox.
+      p.subtitle Too busy to catch up with stories you care about from Hacker News? 
+      p.subtitle Stop worrying and let them come to you.
 
-      form(action="/subscribe", method="post")
-        label I'm interested in
-        textarea(name="topics", rows="3", placeholder="E.g., AI, blockchain, startup, javascript")
-        label Deliver them to
-        input(type="email" name="email" placeholder="fan@hnmail.io")
-        button(type="submit") Subscribe
+      .container
+      
+        form(action="/sample", method="get")
+          button.btn-default(type="submit") View Sample
+
+        form(action="/subscribe", method="post")
+          label I'm interested in
+          textarea(name="topics", rows="3", placeholder="E.g., AI, blockchain, startup, javascript")
+          label Deliver them to
+          input(type="email" name="email" placeholder="fan@hnmail.io")
+          button.btn-primary(type="submit") Subscribe
