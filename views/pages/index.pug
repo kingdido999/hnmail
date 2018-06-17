@@ -27,11 +27,13 @@ html(lang="en")
       .container
       
         form(action="/sample", method="get")
-          button.btn-default(type="submit") View Sample
+          button.btn-default(type="submit") View Sample Newsletter
 
         form(action="/subscribe", method="post")
-          label I'm interested in
-          textarea(name="topics", rows="3", placeholder="E.g., AI, blockchain, startup, javascript")
-          label Deliver them to
-          input(type="email" name="email" placeholder="fan@hnmail.io")
+          .input-field
+            label I'm interested in
+            input(name="topics", placeholder="AI, blockchain, startup")
+          .input-field
+            label Deliver them to
+            input(type="email" name="email" placeholder="fan@hnmail.io")
           button.btn-primary(type="submit") Subscribe
