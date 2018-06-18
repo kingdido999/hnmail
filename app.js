@@ -29,6 +29,10 @@ router.get('/sample', async ctx => {
   await ctx.render('email/index', { topics })
 })
 
+router.get('/welcome', async ctx => {
+  await ctx.render('pages/welcome')
+})
+
 router.post('/subscribe', async ctx => {
   const { email, topics } = ctx.request.body
   const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())

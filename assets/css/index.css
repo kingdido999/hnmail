@@ -12,6 +12,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #ff6347;
 }
 
 nav ul {
@@ -41,15 +42,26 @@ section {
 }
 
 section#intro {
-  background-image: url('svg/news.svg');
+  background-image: url('/svg/news.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
 }
 
+section#welcome {
+  background-image: url('/svg/taken.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top; 
+  height: 500px;
+}
+
 h1 {
-  margin-top: 30%;
   font-size: 2.4rem;
+}
+
+section#intro h1 {
+  margin-top: 30%;
 }
 
 .subtitle {
