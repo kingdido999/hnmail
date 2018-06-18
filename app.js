@@ -26,7 +26,7 @@ router.get('/', async ctx => {
 
 router.get('/sample', async ctx => {
   const topics = require('./sample-topics')
-  await ctx.render('email/index', { topics })
+  await ctx.render('pages/sample', { topics })
 })
 
 router.get('/welcome', async ctx => {
@@ -77,7 +77,6 @@ const PORT = 3000
 app.listen(PORT)
 console.log(`Listening on port: ${PORT}`)
 
-// TODO
 // Every Friday at 8AM
 // 1. Get all topics from DB.
 // 2. Use HackerNewsCrawler to fetch articles for all topics.

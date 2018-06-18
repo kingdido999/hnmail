@@ -1,0 +1,96 @@
+@import "variables"
+@import "reset"
+@import "components/nav"
+
+a 
+  text-decoration: none
+  color: primary-color
+
+h1 
+  font-size: 2.4rem
+
+section 
+  display: flex
+  flex-direction: column
+  text-align: center
+  padding: 2rem 1rem
+
+main 
+  background-image: url('/svg/news.svg')
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: top
+
+section#welcome 
+  background-image: url('/svg/taken.svg')
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: top 
+  height: 500px
+
+
+section#intro h1 
+  margin-top: 30%
+
+.subtitle 
+  font-size: 1.2rem
+
+.container 
+  margin: 0 auto
+  width: 600px
+  max-width: 100%
+
+form 
+  display: flex
+  flex-direction: column
+  margin: 1rem 0
+
+.input-field 
+  margin: 1rem 0
+  display: flex
+  flex-direction: column
+
+.input-field label 
+  margin: 0.4rem
+  font-size: 1.2rem
+
+.input-field input 
+  margin: 0.4rem
+  text-align: center
+  font-size: 1.2rem
+
+input, button 
+  font-size: 1rem
+  border: 1px solid transparent
+
+input 
+  color: primary-color
+  outline: none
+
+button 
+  cursor: pointer
+  font-weight: 600
+  letter-spacing: 1px
+  min-width: 240px
+  padding: 1rem
+  margin: 1rem
+  border-radius: 4px
+  box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08)
+
+:focus 
+  outline: 0
+
+[required] 
+  box-shadow: none
+
+::placeholder 
+  color: primary-color
+  opacity: 0.7
+
+.btn-default 
+  background: accent-color
+  color: white
+
+.btn-primary 
+  background: primary-color
+  color: white

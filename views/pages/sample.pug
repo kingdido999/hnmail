@@ -2,9 +2,11 @@ doctype html
 html(lang="en")
   head
     include ../partials/head.pug
-    style
-      include ../../assets/css/email.css
+    link(rel="stylesheet", href="css/email.css")
+
   body
+    include ../partials/header.pug
+
     main
       each topic in Object.keys(topics)
         .topic= topic.toUpperCase()

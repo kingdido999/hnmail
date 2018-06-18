@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "DEBUG=koa* nodemon app.js",
+    "stylus": "stylus --watch assets/stylus/main.styl assets/stylus/email.styl --out assets/css --compress",
     "test:smoke": "node test/smoke.js",
     "test:db": "node test/db.js"
   },
@@ -20,6 +21,7 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "stylus": "^0.54.5"
   }
 }
