@@ -1,15 +1,11 @@
 const HackerNewsCrawler = require('../HackerNewsCrawler')
-const Mailer = require('../Mailer')
 ;(async () => {
   const hnCrawler = new HackerNewsCrawler()
-  const topics = ['javascript', 'interview']
+  const topics = ['AI', 'blockchain', 'startup', 'education', 'interview']
 
   try {
     const results = await hnCrawler.fetchArticlesByTopics(topics)
     console.log(results)
-
-    // const mailer = new Mailer()
-    // await mailer.send(['kingdido999@gmail.com'], { topics: results })
   } catch (err) {
     console.log(err)
   }
