@@ -67,8 +67,7 @@ router.post('/subscribe', async ctx => {
     }
   })
 
-  // TODO: redirect to success page
-  ctx.redirect('/')
+  ctx.redirect('/welcome')
 })
 
 app.use(router.routes())
