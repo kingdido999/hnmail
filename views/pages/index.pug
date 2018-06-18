@@ -16,24 +16,26 @@ html(lang="en")
             a(href='/') HN Mail
 
     main
-      h1
-        span Hacker News
-        br
-        span Tailored For You
+      section#intro
+        h1
+          span Hacker News
+          br
+          span Tailored For You
 
-      p.subtitle Too busy to catch up with stories you care about from Hacker News? 
-      p.subtitle Stop worrying and let them come to you.
+        p.subtitle Too busy to keep up with stories you care about from Hacker News? 
+        p.subtitle Stop worrying and let them come to you.
 
-      .container
-      
-        form(action="/sample", method="get")
-          button.btn-default(type="submit") View Sample Newsletter
+        .container
+          form(action="/sample", method="get")
+            button.btn-default(type="submit") View Sample Newsletter
 
-        form(action="/subscribe", method="post")
-          .input-field
-            label I'm interested in
-            input(name="topics", placeholder="AI, blockchain, startup")
-          .input-field
-            label Deliver them to
-            input(type="email" name="email" placeholder="fan@hnmail.io")
-          button.btn-primary(type="submit") Subscribe
+      section#subscribe
+        .container
+          form(action="/subscribe", method="post")
+            .input-field
+              label I'm interested in
+              input(name="topics", placeholder="AI, blockchain, startup")
+            .input-field
+              label Deliver them to
+              input(type="email" name="email" placeholder="fan@hnmail.io")
+            button.btn-primary(type="submit") Subscribe

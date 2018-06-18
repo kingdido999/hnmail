@@ -33,15 +33,18 @@ nav a {
   color: #000000;
 }
 
-main {
+section {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding: 0 1rem;
+}
+
+section#intro {
   background-image: url('svg/news.svg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: top;
-  padding: 0 1rem;
 }
 
 h1 {
@@ -55,8 +58,6 @@ h1 {
 
 .container {
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
 }
 
 form {
