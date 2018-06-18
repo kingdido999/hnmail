@@ -3,7 +3,7 @@ const mg = require('nodemailer-mailgun-transport')
 const { mailgun } = require('./.env')
 
 class Mailer {
-  async send (receivers, context) {
+  async send (receivers, subject, context) {
     const transporter = nodemailer.createTransport(
       mg({
         auth: {
@@ -13,11 +13,10 @@ class Mailer {
       })
     )
 
-    // setup email data with unicode symbols
-    let mailOptions = {
-      from: 'HN Mail <info@hnmail.io>', // sender address
-      to: receivers, // list of receivers
-      subject: 'Hacker News Weekly', // Subject line
+    const mailOptions = {
+      from: 'HN Mail <info@hnmail.io>',
+      to: receivers,
+      subject,
       template: {
         name: 'views/email/index.pug',
         engine: 'pug',

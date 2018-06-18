@@ -6,6 +6,7 @@ const views = require('koa-views')
 const koaBody = require('koa-body')
 const mongoose = require('mongoose')
 const schedule = require('node-schedule')
+const _ = require('lodash')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
 
@@ -91,7 +92,8 @@ async function sendEmails () {
     const results = await hnCrawler.fetchArticlesByTopics(topicNames)
     users.forEach(async user => {
       const userTopics = R.pickAll(user.topics, results)
-      await mailer.send(user.email, { topics: userTopics })
+      const subject = _.sample(userTopics)[0].title
+      await mailer.send(user.email, subject, { topics: userTopics })
     })
   } catch (err) {
     console.log(err)

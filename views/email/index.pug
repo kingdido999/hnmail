@@ -11,7 +11,7 @@ html(lang="en")
   body
     main
       each topic in Object.keys(topics)
-        .topic= '#' + topic
+        .topic= topic.toUpperCase()
         .articles
           each article in topics[topic]
             .article

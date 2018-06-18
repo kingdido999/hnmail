@@ -17,21 +17,22 @@ html(lang="en")
 
     main
       section#intro
-        h1
-          span Hacker News
-          br
-          span Tailored For You
-
-        p.subtitle Too busy to keep up with stories you care about from Hacker News? 
-        p.subtitle Stop worrying and let them come to you.
-
         .container
+          h1
+            span Hacker News
+            br
+            span Tailored For You
+
+          p.subtitle Too busy to keep up with stories you care about from Hacker News? 
+          p.subtitle Stop worrying and let them come to you.
+
           form(action="/sample", method="get")
-            button.btn-default(type="submit") View Sample Newsletter
+            div
+              button.btn-default(type="submit") View Sample Newsletter
 
       section#subscribe
-        h2 Join HN Mail
         .container
+          h2 Join HN Mail
           form(action="/subscribe", method="post")
             .input-field
               label I'm interested in topics like...
@@ -39,4 +40,5 @@ html(lang="en")
             .input-field
               label Send weekly newsletter to
               input(type="email" name="email" placeholder="fan@hnmail.io", required="true")
-            button.btn-primary(type="submit") Subscribe
+            div
+              button.btn-primary(type="submit") Subscribe

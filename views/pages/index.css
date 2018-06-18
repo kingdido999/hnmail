@@ -37,7 +37,7 @@ section {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0 1rem;
+  padding: 2rem 1rem;
 }
 
 section#intro {
@@ -58,6 +58,8 @@ h1 {
 
 .container {
   margin: 0 auto;
+  width: 600px;
+  max-width: 100%;
 }
 
 form {
@@ -103,6 +105,7 @@ button {
   cursor: pointer;
   font-weight: 600;
   letter-spacing: 1px;
+  min-width: 240px;
 }
 
 [required] {
