@@ -8,6 +8,9 @@ html(lang="en")
     include ../partials/header.pug
 
     main
+      p.
+        #[strong HN Mail] to me
+
       each topic in Object.keys(topics)
         .topic= topic.toUpperCase()
         .articles
