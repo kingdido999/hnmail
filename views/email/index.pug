@@ -11,7 +11,7 @@ html(lang="en")
   body
     main
       each topic in Object.keys(topics)
-        .topic= '# ' + topic
+        .topic= '#' + topic
         .articles
           each article in topics[topic]
             .article
@@ -34,7 +34,6 @@ html(lang="en")
         p
           small You are receiving this email because you signed up for the HN Mail mailing list.
         p
-          small To get in touch, just reply to this email! 👋
+          small If you have any questions or suggestions, just reply to this email! 👋
         p
-         small 
-          a(href="#") Unsubscribe
+          small To unsubscribe, simply reply "unsub".

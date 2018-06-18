@@ -74,13 +74,13 @@ form {
 
 .input-field label {
   margin: 0.4rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .input-field input {
   margin: 0.4rem;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 input, button {
@@ -103,6 +103,10 @@ button {
   cursor: pointer;
   font-weight: 600;
   letter-spacing: 1px;
+}
+
+[required] {
+  box-shadow: none;
 }
 
 .btn-default {
