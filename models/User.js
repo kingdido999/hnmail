@@ -5,8 +5,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  token: {
+    type: String
+  },
   topics: {
     type: [String]
+  },
+  is_verified: {
+    type: Boolean,
+    default: false
   }
 })
 

@@ -1,0 +1,10 @@
+extends ../layouts/email.pug
+
+block content
+  p Hi,
+  p If you would like to update your HN Mail topics to: 
+  p.text-primary= topics
+  p
+    | Please click 
+    a(href=link) here
+    |  to finish the update.

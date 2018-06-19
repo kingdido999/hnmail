@@ -1,32 +1,29 @@
 const nodemailer = require('nodemailer')
 const mg = require('nodemailer-mailgun-transport')
 const { mailgun } = require('./.env')
+const R = require('ramda')
+
+const transporter = nodemailer.createTransport(
+  mg({
+    auth: {
+      api_key: mailgun.apiKey,
+      domain: mailgun.domain
+    }
+  })
+)
 
 class Mailer {
-  async send (receivers, subject, context) {
-    const transporter = nodemailer.createTransport(
-      mg({
-        auth: {
-          api_key: mailgun.apiKey,
-          domain: mailgun.domain
-        }
-      })
+  static async send (mailOptions) {
+    const mergedOptions = R.merge(
+      {
+        from: 'HN Mail <info@hnmail.io>'
+      },
+      mailOptions
     )
-
-    const mailOptions = {
-      from: 'HN Mail <info@hnmail.io>',
-      to: receivers,
-      subject,
-      template: {
-        name: 'views/emails/newsletter.pug',
-        engine: 'pug',
-        context
-      }
-    }
 
     try {
       // send mail with defined transport object
-      const info = await transporter.sendMail(mailOptions)
+      const info = await transporter.sendMail(mergedOptions)
       console.log('Message sent: %s', info.messageId)
     } catch (err) {
       console.log(err)

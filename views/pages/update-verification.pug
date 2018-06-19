@@ -5,18 +5,16 @@ block dynamicCss
 
 block content
   main
-    section#verify-complete
+    section#verify-email
 
     section
       .container
-        h1 Welcome to HN Mail! 🎉
-        p.subtitle You'll start receiving newsletters with the following topics: 
+        h1 Email Verification
+        p.subtitle You have requested to update topics to: 
         p.subtitle.text-primary
           strong= topics
-        p.subtitle
-          | Rember that you can update your topics on 
-          a(href="/") home page
-          | .
+        p.subtitle We've sent a verification email to #[a= email].
+        p.subtitle Please click the link included in the email and you're all set.
         p.subtitle 
           | Feel free to contact 
           a(href="mailto:info@hnmail.io") info@hnmail.io 
