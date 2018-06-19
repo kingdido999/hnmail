@@ -18,7 +18,7 @@ class Mailer {
       to: receivers,
       subject,
       template: {
-        name: 'views/email/index.pug',
+        name: 'views/emails/newsletter.pug',
         engine: 'pug',
         context
       }

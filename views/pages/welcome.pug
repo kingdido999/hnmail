@@ -1,24 +1,21 @@
-doctype html
-html(lang="en")
-  head
-    include ../partials/head.pug
-    link(rel="stylesheet", href="css/main.css")
-    
-  body
-    include ../partials/header.pug
+extends ../layouts/primary.pug
 
-    main
-      section#welcome
+block dynamicCss
+  link(rel="stylesheet", href="css/main.css")
 
-      section
-        .container
-          h1 Welcome to HN Mail! 🎉
-          p.subtitle 
-            | You'll start receiving customized newsletter on a weekly basis.
-            | Feel free to contact 
-            a(href="mailto:webmaster@example.com") info@hnmail.io 
-            | if you have any questions or suggestions.
-          p.subtitle
-            | Tips: you can always update your topics on 
-            a(href="/") home page
-            | .
+block content
+  main
+    section#welcome
+
+    section
+      .container
+        h1 Welcome to HN Mail! 🎉
+        p.subtitle 
+          | You'll start receiving customized newsletter on a weekly basis.
+          | Feel free to contact 
+          a(href="mailto:webmaster@example.com") info@hnmail.io 
+          | if you have any questions or suggestions.
+        p.subtitle
+          | Tips: you can always update your topics on 
+          a(href="/") home page
+          | .

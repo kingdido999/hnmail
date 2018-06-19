@@ -21,7 +21,7 @@ app.use(koaBody())
 const router = new Router()
 
 router.get('/', async ctx => {
-  await ctx.render('pages/index')
+  await ctx.render('pages/home')
 })
 
 router.get('/sample', async ctx => {

@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+  head
+    include ../partials/head.pug
+    block dynamicCss
+  
+  body
+    header
+      nav
+        ul
+          li
+            a(href='/') HN Mail
+          li
+            a(href='/sample') Sample
+    
+    block content
