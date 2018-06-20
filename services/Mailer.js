@@ -22,7 +22,7 @@ class Mailer {
     )
 
     try {
-      // send mail with defined transport object
+      console.log('Sending email to: %s', mailOptions.to)
       const info = await transporter.sendMail(mergedOptions)
       console.log('Message sent: %s', info.messageId)
     } catch (err) {

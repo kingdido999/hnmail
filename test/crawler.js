@@ -6,6 +6,7 @@ const HackerNewsCrawler = require('../HackerNewsCrawler')
   try {
     const results = await hnCrawler.fetchArticlesByTopics(topics)
     console.log(results)
+    process.exit()
   } catch (err) {
     console.log(err)
   }

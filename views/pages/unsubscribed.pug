@@ -1,0 +1,17 @@
+extends ../layouts/primary.pug
+
+block dynamicCss
+  link(rel="stylesheet", href="css/main.css")
+
+block content
+  main
+    section#unsubscribed
+
+    section
+      .container
+        h1 Unsubscribed
+        p.subtitle You have successfully unsubscribed from HN Mail. 
+        p.subtitle 
+          | Feel free to contact 
+          a(href="mailto:info@hnmail.io") info@hnmail.io 
+          | if you have any issues.

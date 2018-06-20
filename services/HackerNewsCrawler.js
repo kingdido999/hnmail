@@ -6,6 +6,7 @@ const BASE_URL =
 
 class HackerNewsCrawler {
   async fetchArticlesByTopics (topics) {
+    console.log('Fetching articles...')
     let options = isLocal
       ? {
         headless: false,
@@ -67,6 +68,7 @@ class HackerNewsCrawler {
     }
 
     await browser.close()
+    console.log('Fetching done.')
 
     return results
   }

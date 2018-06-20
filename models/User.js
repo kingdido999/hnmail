@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
   is_verified: {
     type: Boolean,
     default: false
+  },
+  is_subscribed: {
+    type: Boolean,
+    default: true
   }
 })
 

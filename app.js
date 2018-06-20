@@ -15,6 +15,7 @@ const HackerNewsMailer = require('./services/HackerNewsMailer')
 const { isLocal } = require('./.env')
 
 mongoose.connect('mongodb://localhost/hnmail')
+const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 const app = new Koa()
 
@@ -39,6 +40,7 @@ router.post('/subscribe', async ctx => {
   const topicString = topicList.join(', ').toUpperCase()
   let user = await User.findOne({ email }).exec()
   const token = nanoid()
+  const unsubLink = `${DOMAIN}/unsubscribe?email=${email}&token=${token}`
 
   if (user) {
     console.log('User with email: %s already exsits.', email)
@@ -52,7 +54,8 @@ router.post('/subscribe', async ctx => {
         engine: 'pug',
         context: {
           topics: topicString,
-          link: `${isLocal ? 'http://localhost:3000' : 'https://hnmail.io'}/update?email=${email}&topics=${topics}&token=${token}`
+          link: `${DOMAIN}/update?email=${email}&topics=${topics}&token=${token}`,
+          unsubLink
         }
       }
     })
@@ -71,7 +74,8 @@ router.post('/subscribe', async ctx => {
         name: 'views/emails/verification.pug',
         engine: 'pug',
         context: {
-          link: `${isLocal ? 'http://localhost:3000' : 'https://hnmail.io'}/verify?email=${email}&topics=${topics}&token=${token}`
+          link: `${DOMAIN}/verify?email=${email}&topics=${topics}&token=${token}`,
+          unsubLink
         }
       }
     })
@@ -90,6 +94,7 @@ router.get('/verify', async ctx => {
     const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
     user.topics = topicList
     user.is_verified = true
+    user.is_subscribed = true
     await user.save()
 
     topicList.forEach(async name => {
@@ -121,6 +126,7 @@ router.get('/update', async ctx => {
   if (user) {
     const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
     user.topics = topicList
+    user.is_subscribed = true
     await user.save()
 
     topicList.forEach(async name => {
@@ -142,6 +148,21 @@ router.get('/update', async ctx => {
 
     await ctx.render('pages/update-complete', {
       topics: topicList.join(', ').toUpperCase()
+    })
+  } else {
+    ctx.status = 401
+  }
+})
+
+router.get('/unsubscribe', async ctx => {
+  const { email, token } = ctx.request.query
+  const user = await User.findOne({ email, token }).exec()
+
+  if (user) {
+    user.is_subscribed = false
+    await user.save()
+    await ctx.render('pages/unsubscribed', {
+      email
     })
   } else {
     ctx.status = 401

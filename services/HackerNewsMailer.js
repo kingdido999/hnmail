@@ -6,6 +6,8 @@ const Newsletter = require('../models/Newsletter')
 const HackerNewsCrawler = require('./HackerNewsCrawler')
 const Mailer = require('./Mailer')
 const _ = require('lodash')
+const { isLocal } = require('../.env')
+const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 class HackerNewsMailer {
   // 1. Get all topics from DB.
@@ -14,7 +16,10 @@ class HackerNewsMailer {
   static async sendNewsletters () {
     mongoose.connect('mongodb://localhost/hnmail')
     const topics = await Topic.find({}).exec()
-    const users = await User.find({ is_verified: true }).exec()
+    const users = await User.find({
+      is_verified: true,
+      is_subscribed: true
+    }).exec()
     const topicNames = topics.map(topic => topic.name)
     const hnCrawler = new HackerNewsCrawler()
 
@@ -29,6 +34,7 @@ class HackerNewsMailer {
           subscriber_id: user.id
         })
         await newsletter.save()
+
         await Mailer.send({
           to: user.email,
           subject,
@@ -36,7 +42,8 @@ class HackerNewsMailer {
             name: 'views/emails/newsletter.pug',
             engine: 'pug',
             context: {
-              topics: userTopics
+              topics: userTopics,
+              unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`
             }
           }
         })
