@@ -15,42 +15,51 @@ class HackerNewsMailer {
   // 3. Get each user's topics, select all related articles and send email.
   static async sendNewsletters () {
     mongoose.connect('mongodb://localhost/hnmail')
-    const topics = await Topic.find({}).exec()
+
+    const topics = await Topic.find({
+      subscriber_ids: { $not: { $size: 0 } }
+    }).exec()
+
     const users = await User.find({
       is_verified: true,
       is_subscribed: true
     }).exec()
+
     const topicNames = topics.map(topic => topic.name)
-    const hnCrawler = new HackerNewsCrawler()
+    let results
 
     try {
-      const results = await hnCrawler.fetchArticlesByTopics(topicNames)
-      users.forEach(async user => {
-        const userTopics = R.pickAll(user.topics, results)
-        const subject = _.sample(userTopics)[0].title
-        const newsletter = new Newsletter({
-          subject,
-          topics: userTopics,
-          subscriber_id: user.id
-        })
-        await newsletter.save()
-
-        await Mailer.send({
-          to: user.email,
-          subject,
-          template: {
-            name: 'views/emails/newsletter.pug',
-            engine: 'pug',
-            context: {
-              topics: userTopics,
-              unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`
-            }
-          }
-        })
-      })
+      results = await HackerNewsCrawler.fetchArticlesByTopics(topicNames)
     } catch (err) {
-      console.log(err)
+      console.error('Failed to fetch articles.')
+      throw err
     }
+
+    users.forEach(async user => {
+      const userTopics = R.pickAll(user.topics, results)
+      const subject = _.sample(userTopics)[0].title
+      const newsletter = new Newsletter({
+        subject,
+        topics: userTopics,
+        subscriber_id: user.id
+      })
+      await newsletter.save()
+
+      console.log('Sending newsletter to %s', user.email)
+      await Mailer.send({
+        to: user.email,
+        subject,
+        template: {
+          name: 'views/emails/newsletter.pug',
+          engine: 'pug',
+          context: {
+            topics: userTopics,
+            unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`
+          }
+        }
+      })
+      console.log('Sending newsletter complete.')
+    })
   }
 }
 

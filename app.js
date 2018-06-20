@@ -7,6 +7,7 @@ const koaBody = require('koa-body')
 const mongoose = require('mongoose')
 const schedule = require('node-schedule')
 const _ = require('lodash')
+const R = require('ramda')
 const nanoid = require('nanoid')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
@@ -102,7 +103,7 @@ router.get('/verify', async ctx => {
 
       if (topic) {
         console.log(`Topic ${name} already exists.`)
-        topic.subscriber_ids.push(user.id)
+        topic.subscriber_ids = R.uniq([...topic.subscriber_ids, user.id])
       } else {
         console.log(`Saving topic: ${name}`)
         topic = new Topic({ name, subscriber_ids: [user.id] })
@@ -125,6 +126,14 @@ router.get('/update', async ctx => {
 
   if (user) {
     const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+    const topicsToBeRemoved = R.difference(user.topics, topicList)
+
+    topicsToBeRemoved.forEach(async name => {
+      const topic = await Topic.findOne({ name }).exec()
+      topic.subscriber_ids = R.without([user.id], topic.subscriber_ids)
+      await topic.save()
+    })
+
     user.topics = topicList
     user.is_subscribed = true
     await user.save()
@@ -134,10 +143,7 @@ router.get('/update', async ctx => {
 
       if (topic) {
         console.log(`Topic ${name} already exists.`)
-
-        if (!user.topics.includes(topic)) {
-          topic.subscriber_ids.push(user.id)
-        }
+        topic.subscriber_ids = R.uniq([...topic.subscriber_ids, user.id])
       } else {
         console.log(`Saving topic: ${name}`)
         topic = new Topic({ name, subscriber_ids: [user.id] })
@@ -159,6 +165,13 @@ router.get('/unsubscribe', async ctx => {
   const user = await User.findOne({ email, token }).exec()
 
   if (user) {
+    user.topics.forEach(async name => {
+      const topic = await Topic.findOne({ name }).exec()
+      topic.subscriber_ids = R.without([user.id], topic.subscriber_ids)
+      await topic.save()
+    })
+
+    user.topics = []
     user.is_subscribed = false
     await user.save()
     await ctx.render('pages/unsubscribed', {

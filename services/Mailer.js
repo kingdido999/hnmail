@@ -22,7 +22,6 @@ class Mailer {
     )
 
     try {
-      console.log('Sending email to: %s', mailOptions.to)
       const info = await transporter.sendMail(mergedOptions)
       console.log('Message sent: %s', info.messageId)
     } catch (err) {

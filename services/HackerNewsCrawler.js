@@ -1,20 +1,22 @@
 const puppeteer = require('puppeteer')
-const { isLocal } = require('../.env')
+// const { isLocal } = require('../.env')
 
 const BASE_URL =
   'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
+const inputSelector = 'input[type="search"]'
+const resultsSelector = '.item-title-and-infos'
 
 class HackerNewsCrawler {
-  async fetchArticlesByTopics (topics) {
+  static async fetchArticlesByTopics (topics) {
     console.log('Fetching articles...')
-    let options = isLocal
-      ? {
-        headless: false,
-        devtools: true
-      }
-      : {}
+    // let options = isLocal
+    //   ? {
+    //     headless: false,
+    //     devtools: true
+    //   }
+    //   : {}
 
-    const browser = await puppeteer.launch(options)
+    const browser = await puppeteer.launch()
     const page = await browser.newPage()
 
     await page.goto(BASE_URL, { waitUntil: 'networkidle2' })
@@ -22,12 +24,19 @@ class HackerNewsCrawler {
     let results = {}
 
     for (let i = 0; i < topics.length; i++) {
-      const query = topics[i]
-      const inputSelector = 'input[type="search"]'
-      await page.type(inputSelector, query)
+      const topic = topics[i]
+      console.log('Searching topic: %s', topic)
+      await page.type(inputSelector, topic)
       await page.waitFor(1000)
-      const resultsSelector = '.item-title-and-infos'
-      await page.waitForSelector(resultsSelector)
+
+      try {
+        await page.waitForSelector(resultsSelector, { timeout: 3000 })
+      } catch (err) {
+        // If no result is available, skip this topic
+        await clearSearch(page, topic)
+        results[topic] = []
+        continue
+      }
 
       const articles = await page.evaluate(resultsSelector => {
         const divs = Array.from(document.querySelectorAll(resultsSelector))
@@ -58,19 +67,22 @@ class HackerNewsCrawler {
           .slice(0, 7)
       }, resultsSelector)
 
-      await page.focus(inputSelector)
-
-      for (let j = 0; j < query.length; j++) {
-        await page.keyboard.press('Backspace')
-      }
-
-      results[query] = articles
+      results[topic] = articles
+      await clearSearch(page, topic)
     }
 
     await browser.close()
     console.log('Fetching done.')
 
     return results
+  }
+}
+
+async function clearSearch (page, query) {
+  await page.focus(inputSelector)
+
+  for (let j = 0; j < query.length; j++) {
+    await page.keyboard.press('Backspace')
   }
 }
 
