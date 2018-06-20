@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 const mg = require('nodemailer-mailgun-transport')
-const { mailgun } = require('./.env')
+const { mailgun } = require('../.env')
 const R = require('ramda')
 
 const transporter = nodemailer.createTransport(

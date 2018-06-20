@@ -2,8 +2,8 @@
   "scripts": {
     "start": "DEBUG=koa* nodemon app.js",
     "stylus": "stylus --watch assets/stylus/main.styl assets/stylus/email.styl --out assets/css --compress",
-    "test:smoke": "node test/smoke.js",
-    "test:db": "node test/db.js"
+    "test:crawler": "node test/crawler.js",
+    "test:mailer": "node test/mailer.js"
   },
   "dependencies": {
     "koa": "^2.5.1",

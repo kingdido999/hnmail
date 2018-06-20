@@ -10,7 +10,8 @@ const _ = require('lodash')
 const nanoid = require('nanoid')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
-const Mailer = require('./Mailer')
+const Mailer = require('./services/Mailer')
+const HackerNewsMailer = require('./services/HackerNewsMailer')
 const { isLocal } = require('./.env')
 
 mongoose.connect('mongodb://localhost/hnmail')
@@ -155,35 +156,4 @@ app.listen(PORT)
 console.log(`Listening on port: ${PORT}`)
 
 // Every Friday at 8AM
-// 1. Get all topics from DB.
-// 2. Use HackerNewsCrawler to fetch articles for all topics.
-// 3. Get each user's topics, select all related articles and send email.
-schedule.scheduleJob('0 8 * * 5', sendNewsletters)
-
-async function sendNewsletters () {
-  const topics = await Topic.find({}).exec()
-  const users = await User.find({ is_verified: true }).exec()
-  const topicNames = topics.map(topic => topic.name)
-  const hnCrawler = new HackerNewsCrawler()
-
-  try {
-    const results = await hnCrawler.fetchArticlesByTopics(topicNames)
-    users.forEach(async user => {
-      const userTopics = R.pickAll(user.topics, results)
-      const subject = _.sample(userTopics)[0].title
-      await Mailer.send({
-        to: user.email,
-        subject,
-        template: {
-          name: 'views/emails/newsletter.pug',
-          engine: 'pug',
-          context: {
-            topics: userTopics
-          }
-        }
-      })
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
+schedule.scheduleJob('0 8 * * 5', HackerNewsMailer.sendNewsletters)

@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const { isLocal } = require('./.env')
+const { isLocal } = require('../.env')
 
 const BASE_URL =
   'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
