@@ -3,6 +3,7 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const serve = require('koa-static')
 const views = require('koa-views')
+const session = require('koa-session')
 const koaBody = require('koa-body')
 const mongoose = require('mongoose')
 const schedule = require('node-schedule')
@@ -20,6 +21,8 @@ const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 const app = new Koa()
 
+app.keys = ['some secret hurr']
+app.use(session(app))
 app.use(serve('assets'))
 app.use(views(path.join(__dirname, '/views'), { extension: 'pug' }))
 app.use(koaBody())
@@ -27,7 +30,8 @@ app.use(koaBody())
 const router = new Router()
 
 router.get('/', async ctx => {
-  await ctx.render('pages/home')
+  await ctx.render('pages/home', { error: ctx.session.error })
+  ctx.session.error = {}
 })
 
 router.get('/sample', async ctx => {
@@ -38,6 +42,14 @@ router.get('/sample', async ctx => {
 router.post('/subscribe', async ctx => {
   const { email, topics } = ctx.request.body
   const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+
+  if (topicList.length > 5) {
+    ctx.session.error = {
+      message: 'Number of topics should not be more than 5.'
+    }
+    ctx.redirect('/')
+  }
+
   const topicString = topicList.join(', ').toUpperCase()
   let user = await User.findOne({ email }).exec()
   const token = nanoid()

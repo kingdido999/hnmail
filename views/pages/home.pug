@@ -25,6 +25,8 @@ block content
     section#subscribe
       .container
         h2 Join HN Mail
+        if error.message
+          .error-message= error.message
         form(action="/subscribe", method="post")
           .input-field
             label I'm interested in topics like...
