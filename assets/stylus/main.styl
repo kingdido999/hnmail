@@ -3,6 +3,9 @@
 @import "utils"
 @import "components/nav"
 
+body
+  color: text-color
+
 a 
   text-decoration: none
   color: primary-color
@@ -57,7 +60,8 @@ section#intro h1
 form 
   display: flex
   flex-direction: column
-  margin: 1rem 0
+  margin: 1rem auto
+  max-width: 280px;
 
 .input-field 
   margin: 1rem 0
@@ -70,16 +74,17 @@ form
 
 .input-field input 
   margin: 0.4rem
-  text-align: center
-  font-size: 1.2rem
 
-input, button 
+input, textarea, button 
   font-size: 1rem
-  border: 1px solid transparent
-
-input 
-  color: primary-color
   outline: none
+  border: 1px solid transparent
+  border-radius: 4px
+  text-align: center
+
+input, textarea
+  background: #eeeeee;
+  padding: 1rem
 
 button 
   cursor: pointer
@@ -88,7 +93,6 @@ button
   min-width: 200px
   padding: 1rem
   margin: 1rem
-  border-radius: 4px
   box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08)
 
 :focus 
@@ -96,10 +100,6 @@ button
 
 [required] 
   box-shadow: none
-
-::placeholder 
-  color: primary-color
-  opacity: 0.7
 
 .btn-default 
   background: accent-color
