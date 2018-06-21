@@ -39,7 +39,7 @@ router.get('/sample', async ctx => {
   await ctx.render('pages/sample', { topics })
 })
 
-router.post('/subscribe', async ctx => {
+router.post('/subscribe', async (ctx, next) => {
   const { email, topics } = ctx.request.body
   const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
 
@@ -48,6 +48,7 @@ router.post('/subscribe', async ctx => {
       message: 'Number of topics should not be more than 5.'
     }
     ctx.redirect('/')
+    return next()
   }
 
   const topicString = topicList.join(', ').toUpperCase()
