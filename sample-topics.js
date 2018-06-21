@@ -1,138 +1,105 @@
-const topics = {
-  AI: [
+module.exports = {
+  'Artificial Intelligence': [
     {
-      title: 'AI Nationalism',
-      link: 'https://www.ianhogarth.com/blog/2018/6/13/ai-nationalism',
-      authorLink: 'https://news.ycombinator.com/user?id=niccolop',
-      hnLink: 'https://news.ycombinator.com/item?id=17310471',
-      domain: 'www.ianhogarth.com',
-      points: 121,
-      author: 'niccolop',
-      date: '4 days ago',
-      comments: '82 comments'
+      title: 'Microsoft acquires Bonsai to help with its artificial intelligence push',
+      link: 'https://www.cnbc.com/2018/06/20/microsoft-buys-ai-start-up-bonsai.html',
+      authorLink: 'https://news.ycombinator.com/user?id=benryon',
+      hnLink: 'https://news.ycombinator.com/item?id=17357307',
+      domain: 'www.cnbc.com',
+      points: 39,
+      author: 'benryon',
+      date: '7 hours ago',
+      comments: '7 comments'
     },
     {
-      title: 'AI chip startup Wave to buy Silicon Valley old-timer MIPS',
-      link: 'https://www.cnet.com/news/ai-chip-startup-wave-buys-silicon-valley-old-timer-mips/',
-      authorLink: 'https://news.ycombinator.com/user?id=mindcrime',
-      hnLink: 'https://news.ycombinator.com/item?id=17312244',
-      domain: 'www.cnet.com',
-      points: 94,
-      author: 'mindcrime',
-      date: '4 days ago',
-      comments: '63 comments'
+      title: 'Automated Sleep Coach helps you sleep better',
+      link: 'https://eightsleep.com/blogs/news/artificial-intelligence-sleep-coach-eight',
+      authorLink: 'https://news.ycombinator.com/user?id=maghis',
+      hnLink: 'https://news.ycombinator.com/item?id=17355624',
+      domain: 'eightsleep.com',
+      points: 20,
+      author: 'maghis',
+      date: '10 hours ago',
+      comments: '3 comments'
     },
     {
-      title: 'Airbnb canceled booking, saying city rejected license number',
-      link: 'https://www.theguardian.com/technology/2018/jun/16/airbnb-booking-cancelled-last-minute-holiday-wrecked',
-      authorLink: 'https://news.ycombinator.com/user?id=Cbasedlifeform',
-      hnLink: 'https://news.ycombinator.com/item?id=17327387',
-      domain: 'www.theguardian.com',
-      points: 52,
-      author: 'Cbasedlifeform',
-      date: '2 days ago',
-      comments: '83 comments'
+      title: 'Ask HN: How to Build a Career as Machine Learning Engineer?',
+      link: 'https://news.ycombinator.com/item?id=17332068',
+      authorLink: 'https://news.ycombinator.com/user?id=__bee',
+      hnLink: 'https://news.ycombinator.com/item?id=17332068',
+      domain: 'news.ycombinator.com',
+      points: 18,
+      author: '__bee',
+      date: '3 days ago',
+      comments: '2 comments'
     },
     {
-      title: 'AI Chip Startup Wave Computing Acquires MIPS, Delivers First Silicon',
-      link: 'https://www.nextplatform.com/2018/06/13/mips-in-hand-ai-chip-startup-wave-computing-delivers-first-silicon/',
-      authorLink: 'https://news.ycombinator.com/user?id=Katydid',
-      hnLink: 'https://news.ycombinator.com/item?id=17304301',
-      domain: 'www.nextplatform.com',
-      points: 13,
-      author: 'Katydid',
-      date: '5 days ago',
-      comments: '4 comments'
-    },
-    {
-      title: 'AI could get 100 times more energy-efficient with IBM’s new artificial synapses',
-      link: 'https://www.technologyreview.com/s/611390/ai-could-get-100-times-more-energy-efficient-with-ibms-new-artificial-synapses/',
-      authorLink: 'https://news.ycombinator.com/user?id=jitrocs',
-      hnLink: 'https://news.ycombinator.com/item?id=17292823',
-      domain: 'www.technologyreview.com',
-      points: 7,
-      author: 'jitrocs',
+      title: 'Ask HN: How can I find non profits to contribute software effort to?',
+      link: 'https://news.ycombinator.com/item?id=17312807',
+      authorLink: 'https://news.ycombinator.com/user?id=kiloreux',
+      hnLink: 'https://news.ycombinator.com/item?id=17312807',
+      domain: 'news.ycombinator.com',
+      points: 5,
+      author: 'kiloreux',
       date: '6 days ago',
-      comments: '4 comments'
+      comments: '3 comments'
     },
     {
-      title: 'AI could help construction industry work faster, keep workforce accident-free',
-      link: 'https://www.technologyreview.com/s/611141/ai-could-help-the-construction-industry-work-faster-and-keep-its-workforce-accident-free/',
-      authorLink: 'https://news.ycombinator.com/user?id=rbanffy',
-      hnLink: 'https://news.ycombinator.com/item?id=17292235',
-      domain: 'www.technologyreview.com',
+      title: 'How Chinese tech giants like Alibaba are bringing AI to neighborhood stores',
+      link: 'https://www.axios.com/china-alibaba-tencent-jd-com-artificial-intelligence-corner-store-df90517e-befb-40ca-82d5-f37caa738d54.html',
+      authorLink: 'https://news.ycombinator.com/user?id=duck',
+      hnLink: 'https://news.ycombinator.com/item?id=17351715',
+      domain: 'www.axios.com',
       points: 4,
-      author: 'rbanffy',
-      date: '6 days ago',
+      author: 'duck',
+      date: 'a day ago',
       comments: '1 comments'
     },
     {
-      title: 'AI startup Clarifai hacked by russian hackers',
-      link: 'https://www.scmagazine.com/ai-startup-clarifai-hacked-by-russian-operatives-during-pentagon-maven-project-lawsuit-claims/article/773687/',
-      authorLink: 'https://news.ycombinator.com/user?id=JanSuly',
-      hnLink: 'https://news.ycombinator.com/item?id=17334321',
-      domain: 'www.scmagazine.com',
-      points: 4,
-      author: 'JanSuly',
-      date: 'a day ago',
+      title: 'Confederation of Laboratories for Artificial Intelligence Research in Europe',
+      link: 'https://claire-ai.org/',
+      authorLink: 'https://news.ycombinator.com/user?id=doener',
+      hnLink: 'https://news.ycombinator.com/item?id=17341427',
+      domain: 'claire-ai.org',
+      points: 2,
+      author: 'doener',
+      date: '2 days ago',
+      comments: '0 comments'
+    },
+    {
+      title: 'Artificial intelligence senses people through walls',
+      link: 'https://news.mit.edu/2018/artificial-intelligence-senses-people-through-walls-0612',
+      authorLink: 'https://news.ycombinator.com/user?id=hutattedonmyarm',
+      hnLink: 'https://news.ycombinator.com/item?id=17331063',
+      domain: 'news.mit.edu',
+      points: 2,
+      author: 'hutattedonmyarm',
+      date: '4 days ago',
       comments: '0 comments'
     }
   ],
-  blockchain: [
-    {
-      title: 'How I became Leonardo da Vinci on the Blockchain',
-      link: 'https://shkspr.mobi/blog/2018/06/how-i-became-leonardo-da-vinci-on-the-blockchain/',
-      authorLink: 'https://news.ycombinator.com/user?id=edent',
-      hnLink: 'https://news.ycombinator.com/item?id=17292476',
-      domain: 'shkspr.mobi',
-      points: 204,
-      author: 'edent',
-      date: '6 days ago',
-      comments: '146 comments'
-    },
+  Blockchain: [
     {
       title: 'Goodbye, Denver Post. Hello, Blockchain',
       link: 'https://www.nytimes.com/2018/06/17/business/media/denver-post-blockchain-colorado-sun.html',
       authorLink: 'https://news.ycombinator.com/user?id=danso',
       hnLink: 'https://news.ycombinator.com/item?id=17332685',
       domain: 'www.nytimes.com',
-      points: 169,
+      points: 175,
       author: 'danso',
+      date: '3 days ago',
+      comments: '93 comments'
+    },
+    {
+      title: 'Blockchain: A technical primer',
+      link: 'https://www2.deloitte.com/insights/us/en/topics/emerging-technologies/blockchain-technical-primer.html',
+      authorLink: 'https://news.ycombinator.com/user?id=halfbrown',
+      hnLink: 'https://news.ycombinator.com/item?id=17348655',
+      domain: 'www2.deloitte.com',
+      points: 148,
+      author: 'halfbrown',
       date: 'a day ago',
-      comments: '92 comments'
-    },
-    {
-      title: '50+ real world use cases built on blockchain architecture',
-      link: 'https://cdn-images-1.medium.com/max/2000/1*cVeTQYLF5Z35yGoZ23Sfmw.png',
-      authorLink: 'https://news.ycombinator.com/user?id=vickiitb',
-      hnLink: 'https://news.ycombinator.com/item?id=17292797',
-      domain: 'cdn-images-1.medium.com',
-      points: 83,
-      author: 'vickiitb',
-      date: '6 days ago',
-      comments: '40 comments'
-    },
-    {
-      title: 'EU Blockchain Observatory Forum to Discuss Regulations',
-      link: 'https://zycrypto.com/eu-blockchain-observatory-forum-to-discuss-regulations/',
-      authorLink: 'https://news.ycombinator.com/user?id=theweb1',
-      hnLink: 'https://news.ycombinator.com/item?id=17291989',
-      domain: 'zycrypto.com',
-      points: 19,
-      author: 'theweb1',
-      date: '6 days ago',
-      comments: '2 comments'
-    },
-    {
-      title: 'Show HN: Side-Project: Collection of blockchain, ICO and cryptocurrency websites',
-      link: 'https://news.ycombinator.com/item?id=17301564',
-      authorLink: 'https://news.ycombinator.com/user?id=marky_nolan',
-      hnLink: 'https://news.ycombinator.com/item?id=17301564',
-      domain: 'news.ycombinator.com',
-      points: 9,
-      author: 'marky_nolan',
-      date: '5 days ago',
-      comments: '1 comments'
+      comments: '63 comments'
     },
     {
       title: 'Tezos Blockchain: A love story – and a horror story',
@@ -140,192 +107,146 @@ const topics = {
       authorLink: 'https://news.ycombinator.com/user?id=rdl',
       hnLink: 'https://news.ycombinator.com/item?id=17338551',
       domain: 'www.wired.com',
-      points: 7,
+      points: 11,
       author: 'rdl',
-      date: '5 hours ago',
-      comments: '0 comments'
-    },
-    {
-      title: 'Implementing PubNub with the Ethereum Blockchain',
-      link: 'https://www.pubnub.com/blog/implementing-pubnub-dapp-with-ethereum-blockchain/?devrel_hn=cameron',
-      authorLink: 'https://news.ycombinator.com/user?id=ajb413',
-      hnLink: 'https://news.ycombinator.com/item?id=17304939',
-      domain: 'www.pubnub.com',
-      points: 6,
-      author: 'ajb413',
-      date: '5 days ago',
-      comments: '2 comments'
-    }
-  ],
-  startup: [
-    {
-      title: 'Survivorship bias and startup hype',
-      link: 'https://www.sonyaellenmann.com/2018/06/survivorship-bias-and-startup-hype.html',
-      authorLink: 'https://news.ycombinator.com/user?id=ifcologne',
-      hnLink: 'https://news.ycombinator.com/item?id=17309153',
-      domain: 'www.sonyaellenmann.com',
-      points: 335,
-      author: 'ifcologne',
-      date: '5 days ago',
-      comments: '118 comments'
-    },
-    {
-      title: 'Scooter startup Bird is seeking a $2B valuation',
-      link: 'https://www.axios.com/scooter-startup-bird-is-seeking-a-2-billion-valuation-1528813078-11187061-2a49-440c-a2e6-65e74faad5ec.html',
-      authorLink: 'https://news.ycombinator.com/user?id=ilamont',
-      hnLink: 'https://news.ycombinator.com/item?id=17293571',
-      domain: 'www.axios.com',
-      points: 101,
-      author: 'ilamont',
-      date: '6 days ago',
-      comments: '270 comments'
-    },
-    {
-      title: 'AI chip startup Wave to buy Silicon Valley old-timer MIPS',
-      link: 'https://www.cnet.com/news/ai-chip-startup-wave-buys-silicon-valley-old-timer-mips/',
-      authorLink: 'https://news.ycombinator.com/user?id=mindcrime',
-      hnLink: 'https://news.ycombinator.com/item?id=17312244',
-      domain: 'www.cnet.com',
-      points: 94,
-      author: 'mindcrime',
-      date: '4 days ago',
-      comments: '63 comments'
-    },
-    {
-      title: 'New UK startup visa route announced by the Home Secretary',
-      link: 'https://www.gov.uk/government/news/new-start-up-visa-route-announced-by-the-home-secretary',
-      authorLink: 'https://news.ycombinator.com/user?id=nns',
-      hnLink: 'https://news.ycombinator.com/item?id=17302892',
-      domain: 'www.gov.uk',
-      points: 83,
-      author: 'nns',
-      date: '5 days ago',
-      comments: '93 comments'
-    },
-    {
-      title: 'Macintosh Startup Sound History [video]',
-      link: 'https://www.youtube.com/watch?v=e7LW_NvSuIk',
-      authorLink: 'https://news.ycombinator.com/user?id=dsego',
-      hnLink: 'https://news.ycombinator.com/item?id=17318900',
-      domain: 'www.youtube.com',
-      points: 82,
-      author: 'dsego',
-      date: '3 days ago',
-      comments: '38 comments'
-    },
-    {
-      title: 'Bird is the fastest startup ever to reach a $1B valuation',
-      link: 'https://qz.com/1305719/electric-scooter-company-bird-is-the-fastest-startup-ever-to-become-a-unicorn/',
-      authorLink: 'https://news.ycombinator.com/user?id=sverige',
-      hnLink: 'https://news.ycombinator.com/item?id=17325144',
-      domain: 'qz.com',
-      points: 50,
-      author: 'sverige',
-      date: '3 days ago',
-      comments: '60 comments'
-    },
-    {
-      title: 'Ask HN: What is your process for validating startup ideas?',
-      link: 'https://news.ycombinator.com/item?id=17290421',
-      authorLink: 'https://news.ycombinator.com/user?id=jonnygoodwin',
-      hnLink: 'https://news.ycombinator.com/item?id=17290421',
-      domain: 'news.ycombinator.com',
-      points: 28,
-      author: 'jonnygoodwin',
-      date: '7 days ago',
-      comments: '10 comments'
-    }
-  ],
-  education: [
-    {
-      title: 'Why not have Lego like Software?',
-      link: 'https://news.ycombinator.com/item?id=17331448',
-      authorLink: 'https://news.ycombinator.com/user?id=Mad_Fury',
-      hnLink: 'https://news.ycombinator.com/item?id=17331448',
-      domain: 'news.ycombinator.com',
-      points: 22,
-      author: 'Mad_Fury',
-      date: 'a day ago',
-      comments: '40 comments'
-    },
-    {
-      title: 'Uchicago drops SAT/ACT requirement',
-      link: 'https://www.washingtonpost.com/local/education/a-shake-up-in-elite-admissions-u-chicago-drops-satact-testing-requirement/2018/06/13/442a5e14-6efd-11e8-bd50-b80389a4e569_story.html',
-      authorLink: 'https://news.ycombinator.com/user?id=harshgupta',
-      hnLink: 'https://news.ycombinator.com/item?id=17316209',
-      domain: 'www.washingtonpost.com',
-      points: 15,
-      author: 'harshgupta',
-      date: '4 days ago',
-      comments: '11 comments'
-    },
-    {
-      title: 'U.S. Adds China’s Internet Controls to List of Trade Barriers',
-      link: 'https://mobile.nytimes.com/2016/04/08/business/international/china-internet-controls-us.html',
-      authorLink: 'https://news.ycombinator.com/user?id=educationdata',
-      hnLink: 'https://news.ycombinator.com/item?id=17325703',
-      domain: 'mobile.nytimes.com',
-      points: 5,
-      author: 'educationdata',
-      date: '3 days ago',
-      comments: '0 comments'
-    },
-    {
-      title: 'As Google for Education tools enter classrooms, parents are asking to opt-out',
-      link: 'http://www.cbc.ca/radio/spark/as-google-for-education-tools-enter-classrooms-across-canada-some-parents-are-asking-to-opt-out-1.4694939',
-      authorLink: 'https://news.ycombinator.com/user?id=colinprince',
-      hnLink: 'https://news.ycombinator.com/item?id=17288366',
-      domain: 'www.cbc.ca',
-      points: 3,
-      author: 'colinprince',
-      date: '7 days ago',
-      comments: '2 comments'
-    },
-    {
-      title: 'Selection against variants in the genome associated with educational attainment [pdf]',
-      link: 'http://www.pnas.org/content/pnas/early/2017/01/10/1612113114.full.pdf',
-      authorLink: 'https://news.ycombinator.com/user?id=yasp',
-      hnLink: 'https://news.ycombinator.com/item?id=17304545',
-      domain: 'www.pnas.org',
-      points: 3,
-      author: 'yasp',
-      date: '5 days ago',
-      comments: '0 comments'
-    },
-    {
-      title: 'The Most Dangerous Equation [pdf]',
-      link: 'http://assets.press.princeton.edu/chapters/s8863.pdf',
-      authorLink: 'https://news.ycombinator.com/user?id=neinzero',
-      hnLink: 'https://news.ycombinator.com/item?id=17330844',
-      domain: 'assets.press.princeton.edu',
-      points: 3,
-      author: 'neinzero',
       date: '2 days ago',
+      comments: '0 comments'
+    },
+    {
+      title: 'Show HN: Blockchain Job Board – Earn Crypto for Applying/referring to Jobs',
+      link: 'https://jobs.xpo.network/',
+      authorLink: 'https://news.ycombinator.com/user?id=abreckle',
+      hnLink: 'https://news.ycombinator.com/item?id=17349303',
+      domain: 'jobs.xpo.network',
+      points: 8,
+      author: 'abreckle',
+      date: 'a day ago',
       comments: '1 comments'
     },
     {
-      title: 'Global Coordination for Planet Earth',
-      link: 'https://news.ycombinator.com/item?id=17336402',
-      authorLink: 'https://news.ycombinator.com/user?id=organizing',
-      hnLink: 'https://news.ycombinator.com/item?id=17336402',
-      domain: 'news.ycombinator.com',
-      points: 3,
-      author: 'organizing',
-      date: '13 hours ago',
+      title: 'Blockchains and Reality – Introducing Rlay',
+      link: 'https://medium.com/rlay-official/introducing-rlay-a-decentralized-protocol-for-blockchains-external-data-problem-c0e6947a193d?ref=hn',
+      authorLink: 'https://news.ycombinator.com/user?id=mjhirn',
+      hnLink: 'https://news.ycombinator.com/item?id=17346080',
+      domain: 'medium.com',
+      points: 6,
+      author: 'mjhirn',
+      date: 'a day ago',
+      comments: '1 comments'
+    },
+    {
+      title: 'New Blockchain game – Cryptage:Origins, an idle strategy and card trading game',
+      link: 'https://medium.com/cryptage/introducing-cryptage-origins-a-card-collection-and-idle-strategy-game-powered-by-the-blockchain-993ef0ca82df',
+      authorLink: 'https://news.ycombinator.com/user?id=nikola_j',
+      hnLink: 'https://news.ycombinator.com/item?id=17337644',
+      domain: 'medium.com',
+      points: 6,
+      author: 'nikola_j',
+      date: '2 days ago',
+      comments: '0 comments'
+    },
+    {
+      title: '13 sidechain projects every blockchain developer should know about',
+      link: 'https://hackernoon.com/13-sidechain-projects-every-blockchain-developer-should-know-about-804b65364107',
+      authorLink: 'https://news.ycombinator.com/user?id=rbanffy',
+      hnLink: 'https://news.ycombinator.com/item?id=17315442',
+      domain: 'hackernoon.com',
+      points: 5,
+      author: 'rbanffy',
+      date: '6 days ago',
       comments: '0 comments'
     }
   ],
-  interview: [
+  Programming: [
+    {
+      title: 'Railway-Oriented Programming (2015)',
+      link: 'https://fsharpforfunandprofit.com/rop/',
+      authorLink: 'https://news.ycombinator.com/user?id=tosh',
+      hnLink: 'https://news.ycombinator.com/item?id=17337155',
+      domain: 'fsharpforfunandprofit.com',
+      points: 256,
+      author: 'tosh',
+      date: '3 days ago',
+      comments: '160 comments'
+    },
+    {
+      title: 'Teach Programming to become a better programmer',
+      link: 'https://www.zeroequalsfalse.press/2018/06/10/teach/',
+      authorLink: 'https://news.ycombinator.com/user?id=kiyanwang',
+      hnLink: 'https://news.ycombinator.com/item?id=17333407',
+      domain: 'www.zeroequalsfalse.press',
+      points: 167,
+      author: 'kiyanwang',
+      date: '3 days ago',
+      comments: '57 comments'
+    },
+    {
+      title: 'Designing a Programming Language for the Desert',
+      link: 'https://futhark-lang.org/blog/2018-06-18-designing-a-programming-language-for-the-desert.html',
+      authorLink: 'https://news.ycombinator.com/user?id=Athas',
+      hnLink: 'https://news.ycombinator.com/item?id=17341760',
+      domain: 'futhark-lang.org',
+      points: 159,
+      author: 'Athas',
+      date: '2 days ago',
+      comments: '25 comments'
+    },
+    {
+      title: 'Some Words on Programming the Atari Jaguar (2006)',
+      link: 'http://alive.atari.org/alive13/jagcode.php',
+      authorLink: 'https://news.ycombinator.com/user?id=rocky1138',
+      hnLink: 'https://news.ycombinator.com/item?id=17333075',
+      domain: 'alive.atari.org',
+      points: 67,
+      author: 'rocky1138',
+      date: '3 days ago',
+      comments: '17 comments'
+    },
+    {
+      title: 'The Implementation of the Icon Programming Language (1986)',
+      link: 'http://www2.cs.arizona.edu/icon/ibsale.htm',
+      authorLink: 'https://news.ycombinator.com/user?id=noch',
+      hnLink: 'https://news.ycombinator.com/item?id=17341131',
+      domain: 'www2.cs.arizona.edu',
+      points: 57,
+      author: 'noch',
+      date: '2 days ago',
+      comments: '10 comments'
+    },
+    {
+      title: 'Why Crystal is the most promising programming language of 2018',
+      link: 'https://medium.com/@DuroSoft/why-crystal-is-the-most-promising-programming-language-of-2018-aad669d8344f',
+      authorLink: 'https://news.ycombinator.com/user?id=crypto-jeronimo',
+      hnLink: 'https://news.ycombinator.com/item?id=17318772',
+      domain: 'medium.com',
+      points: 43,
+      author: 'crypto-jeronimo',
+      date: '6 days ago',
+      comments: '106 comments'
+    },
+    {
+      title: 'Using a Proof Assistant to Teach Programming Language Foundations (2010) [video]',
+      link: 'https://vimeo.com/6615365',
+      authorLink: 'https://news.ycombinator.com/user?id=rfreytag',
+      hnLink: 'https://news.ycombinator.com/item?id=17317174',
+      domain: 'vimeo.com',
+      points: 38,
+      author: 'rfreytag',
+      date: '6 days ago',
+      comments: '1 comments'
+    }
+  ],
+  Interview: [
     {
       title: 'Ask HN: How to not fail on coding interview questions?',
       link: 'https://news.ycombinator.com/item?id=17333697',
       authorLink: 'https://news.ycombinator.com/user?id=evoneutron',
       hnLink: 'https://news.ycombinator.com/item?id=17333697',
       domain: 'news.ycombinator.com',
-      points: 175,
+      points: 198,
       author: 'evoneutron',
-      date: 'a day ago',
-      comments: '114 comments'
+      date: '3 days ago',
+      comments: '126 comments'
     },
     {
       title: 'Humans grow linearly, companies grow exponentially – interview with Khalid Halim',
@@ -333,10 +254,10 @@ const topics = {
       authorLink: 'https://news.ycombinator.com/user?id=yarapavan',
       hnLink: 'https://news.ycombinator.com/item?id=17333081',
       domain: 'firstround.com',
-      points: 115,
+      points: 124,
       author: 'yarapavan',
-      date: 'a day ago',
-      comments: '28 comments'
+      date: '3 days ago',
+      comments: '31 comments'
     },
     {
       title: 'Interview with Freeman Dyson',
@@ -346,30 +267,8 @@ const topics = {
       domain: 'www.52-insights.com',
       points: 86,
       author: 'dedalus',
-      date: '2 days ago',
-      comments: '42 comments'
-    },
-    {
-      title: 'Show HN: AlgoExpert: 60 Video Explanations of Popular Coding Interview Questions',
-      link: 'https://www.algoexpert.io/product?src=shn',
-      authorLink: 'https://news.ycombinator.com/user?id=cmihailescu',
-      hnLink: 'https://news.ycombinator.com/item?id=17307846',
-      domain: 'www.algoexpert.io',
-      points: 21,
-      author: 'cmihailescu',
-      date: '5 days ago',
-      comments: '4 comments'
-    },
-    {
-      title: '[video] Hacker who hacked CIA director gives hilarious interview',
-      link: 'http://www.vidplays.online/2018/06/znmnvbx.mp4.html',
-      authorLink: 'https://news.ycombinator.com/user?id=atlantamount',
-      hnLink: 'https://news.ycombinator.com/item?id=17307700',
-      domain: 'www.vidplays.online',
-      points: 7,
-      author: 'atlantamount',
-      date: '5 days ago',
-      comments: '0 comments'
+      date: '4 days ago',
+      comments: '45 comments'
     },
     {
       title: 'Tools and Craft: An Interview with Andy Hertzfeld',
@@ -377,23 +276,122 @@ const topics = {
       authorLink: 'https://news.ycombinator.com/user?id=antimatter15',
       hnLink: 'https://news.ycombinator.com/item?id=17340827',
       domain: 'www.notion.so',
-      points: 4,
+      points: 9,
       author: 'antimatter15',
-      date: '38 minutes ago',
+      date: '2 days ago',
       comments: '0 comments'
     },
     {
-      title: 'Ask Engineering Interview Candidates to Explain Something',
-      link: 'https://redfin.engineering/ask-engineering-interview-candidates-to-explain-something-c91ae6329499',
-      authorLink: 'https://news.ycombinator.com/user?id=dfabulich',
-      hnLink: 'https://news.ycombinator.com/item?id=17307986',
-      domain: 'redfin.engineering',
-      points: 3,
-      author: 'dfabulich',
-      date: '5 days ago',
+      title: 'Building Better Software with Info-Ops: An Interview with Daniel Markham',
+      link: 'https://programmingzen.com/building-better-software-info-ops-daniel-b-markham-interview/',
+      authorLink: 'https://news.ycombinator.com/user?id=acangiano',
+      hnLink: 'https://news.ycombinator.com/item?id=17345989',
+      domain: 'programmingzen.com',
+      points: 5,
+      author: 'acangiano',
+      date: 'a day ago',
       comments: '1 comments'
+    },
+    {
+      title: 'Jaron Lanier interview on how social media ruins your life',
+      link: 'https://www.youtube.com/watch?v=kc_Jq42Og7Q',
+      authorLink: 'https://news.ycombinator.com/user?id=briantakita',
+      hnLink: 'https://news.ycombinator.com/item?id=17351545',
+      domain: 'www.youtube.com',
+      points: 4,
+      author: 'briantakita',
+      date: 'a day ago',
+      comments: '0 comments'
+    },
+    {
+      title: 'Walmart Data Science Interview Questions',
+      link: 'https://medium.com/acing-ai/walmart-data-science-interview-questions-acing-the-ai-interview-a775b264b015',
+      authorLink: 'https://news.ycombinator.com/user?id=vimarshk',
+      hnLink: 'https://news.ycombinator.com/item?id=17345687',
+      domain: 'medium.com',
+      points: 4,
+      author: 'vimarshk',
+      date: '2 days ago',
+      comments: '0 comments'
+    }
+  ],
+  'Show HN': [
+    {
+      title: 'Show HN: Open Logos – Free logos for open source projects',
+      link: 'http://openlogos.org/',
+      authorLink: 'https://news.ycombinator.com/user?id=arasatasaygin',
+      hnLink: 'https://news.ycombinator.com/item?id=17344419',
+      domain: 'openlogos.org',
+      points: 664,
+      author: 'arasatasaygin',
+      date: '2 days ago',
+      comments: '107 comments'
+    },
+    {
+      title: 'Show HN: Posthook – Job Scheduling as a Service',
+      link: 'https://posthook.io/',
+      authorLink: 'https://news.ycombinator.com/user?id=cgenuity',
+      hnLink: 'https://news.ycombinator.com/item?id=17346616',
+      domain: 'posthook.io',
+      points: 150,
+      author: 'cgenuity',
+      date: 'a day ago',
+      comments: '72 comments'
+    },
+    {
+      title: 'Show HN: World Cup API for 2018',
+      link: 'http://worldcup.sfg.io/',
+      authorLink: 'https://news.ycombinator.com/user?id=llamataboot',
+      hnLink: 'https://news.ycombinator.com/item?id=17310483',
+      domain: 'worldcup.sfg.io',
+      points: 140,
+      author: 'llamataboot',
+      date: '7 days ago',
+      comments: '40 comments'
+    },
+    {
+      title: 'Show HN: MRuby-Zest – A Scriptable Audio GUI Framework',
+      link: 'http://log.fundamental-code.com/2018/06/16/mruby-zest.html',
+      authorLink: 'https://news.ycombinator.com/user?id=fundamental',
+      hnLink: 'https://news.ycombinator.com/item?id=17355328',
+      domain: 'log.fundamental-code.com',
+      points: 73,
+      author: 'fundamental',
+      date: '10 hours ago',
+      comments: '16 comments'
+    },
+    {
+      title: 'Show HN: A SIMD-accelerated noise library in Rust',
+      link: 'https://github.com/jackmott/rust-simd-noise',
+      authorLink: 'https://news.ycombinator.com/user?id=gameswithgo',
+      hnLink: 'https://news.ycombinator.com/item?id=17333044',
+      domain: 'github.com',
+      points: 72,
+      author: 'gameswithgo',
+      date: '3 days ago',
+      comments: '23 comments'
+    },
+    {
+      title: 'Show HN: New markup language for fans of Haml and Markdown',
+      link: 'https://github.com/inem/hamdown?',
+      authorLink: 'https://news.ycombinator.com/user?id=inem',
+      hnLink: 'https://news.ycombinator.com/item?id=17312562',
+      domain: 'github.com',
+      points: 64,
+      author: 'inem',
+      date: '6 days ago',
+      comments: '58 comments'
+    },
+    {
+      title: 'Show HN: Quiver – GraphQL on Steroids',
+      link: 'https://medium.com/@syrusakbary/quiver-graphql-on-steroids-13612ea1ea77',
+      authorLink: 'https://news.ycombinator.com/user?id=syrusakbary',
+      hnLink: 'https://news.ycombinator.com/item?id=17313728',
+      domain: 'medium.com',
+      points: 54,
+      author: 'syrusakbary',
+      date: '6 days ago',
+      comments: '25 comments'
     }
   ]
 }
-
-module.exports = topics
