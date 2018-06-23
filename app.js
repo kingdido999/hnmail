@@ -93,6 +93,14 @@ router.post('/subscribe', async (ctx, next) => {
         }
       }
     })
+
+    const totlaUserCount = await User.count()
+    await Mailer.send({
+      to: 'kingdido999@gmail.com',
+      subject: `New user joined HN Mail`,
+      text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal Users: ${totlaUserCount}`
+    })
+
     await ctx.render('pages/verification', {
       email,
       topics: topicString
