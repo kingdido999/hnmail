@@ -37,7 +37,7 @@ class HackerNewsMailer {
 
     users.forEach(async user => {
       const userTopics = R.pickAll(user.topics, results)
-      const subject = _.sample(userTopics)[0].title
+      const subject = getRandomTitleFromTopics(userTopics)
       const newsletter = new Newsletter({
         subject,
         topics: userTopics,
@@ -60,6 +60,15 @@ class HackerNewsMailer {
       })
       console.log('Sending newsletter complete.')
     })
+  }
+}
+
+function getRandomTitleFromTopics (topics) {
+  const nonEmptyTopics = R.filter(topic => topic.length > 0, topics)
+  if (Object.keys(nonEmptyTopics).length > 0) {
+    return _.sample(nonEmptyTopics)[0].title
+  } else {
+    return 'Please Update Your HN Mail Topics'
   }
 }
 
