@@ -30,7 +30,13 @@ app.use(koaBody())
 const router = new Router()
 
 router.get('/', async ctx => {
-  await ctx.render('pages/home', { error: ctx.session.error })
+  const topics = await Topic.find({
+    subscriber_ids: { $not: { $size: 0 } }
+  })
+    .sort({ subscriber_ids: -1 })
+    .limit(50)
+    .exec()
+  await ctx.render('pages/home', { topics, error: ctx.session.error })
   ctx.session.error = {}
 })
 

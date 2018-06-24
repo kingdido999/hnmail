@@ -22,9 +22,18 @@ block content
           div
             button.btn-default(type="submit") Sample Newsletter
 
+    section#topics
+      .container
+        h2 🔥 Hot Topics
+        ul
+          each topic in topics
+            li
+              span= topic.name.toUpperCase()
+              small= ` x${topic.subscriber_ids.length}`
+
     section#subscribe
       .container
-        h2 Join HN Mail
+        h2 🙋 Join HN Mail
         if error && error.message
           .error-message= error.message
         form(action="/subscribe", method="post")
