@@ -32,11 +32,16 @@ const router = new Router()
 router.get('/', async ctx => {
   const topics = await Topic.find({
     subscriber_ids: { $not: { $size: 0 } }
+  }).exec()
+
+  const hotTopics = topics
+    .sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
+    .slice(0, 50)
+
+  await ctx.render('pages/home', {
+    topics: hotTopics,
+    error: ctx.session.error
   })
-    .sort({ subscriber_ids: -1 })
-    .limit(50)
-    .exec()
-  await ctx.render('pages/home', { topics, error: ctx.session.error })
   ctx.session.error = {}
 })
 
