@@ -39,8 +39,9 @@ block content
           .error-message= error.message
         form(action="/subscribe", method="post")
           .input-field
-            label I'm interested in topics like...
-            textarea(name="topics", placeholder="AI, Blockchain, Show HN (at most 5 topics)", required="true")
+            label Topics I'm interested in
+            textarea(name="topics", rows="3" placeholder="AI, Blockchain, Show HN", required="true")
+            p.text-light At most 5 topics. Can be updated later.
           .input-field
             label Send weekly newsletter to
             input(type="email" name="email" placeholder="fan@hnmail.io", required="true")
