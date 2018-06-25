@@ -1,22 +1,22 @@
 const puppeteer = require('puppeteer')
-// const { isLocal } = require('../.env')
+const { isLocal } = require('../.env')
 
 const BASE_URL =
-  'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
+  'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=all'
 const inputSelector = 'input[type="search"]'
 const resultsSelector = '.item-title-and-infos'
 
 class HackerNewsCrawler {
   static async fetchArticlesByTopics (topics) {
     console.log('Fetching articles...')
-    // let options = isLocal
-    //   ? {
-    //     headless: false,
-    //     devtools: true
-    //   }
-    //   : {}
+    let options = isLocal
+      ? {
+        headless: false,
+        devtools: true
+      }
+      : {}
 
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch(options)
     const page = await browser.newPage()
 
     await page.goto(BASE_URL, { waitUntil: 'networkidle2' })
@@ -42,12 +42,12 @@ class HackerNewsCrawler {
         const divs = Array.from(document.querySelectorAll(resultsSelector))
         return divs
           .map(div => {
-            const link = div.querySelector('a')
+            const link = div.querySelector('h2').lastElementChild
             const itemInfos = div.querySelector('ul').querySelectorAll('span')
             const [points, author, date, comments] = itemInfos
-
+            debugger
             return {
-              title: link.text,
+              title: link.textContent,
               link: link.href,
               authorLink: div.querySelector('.author').parentNode.href,
               hnLink: div.querySelector('.comments').parentNode.href,
@@ -63,12 +63,12 @@ class HackerNewsCrawler {
             (item, index, items) =>
               index === items.findIndex(t => t.title === item.title)
           )
-          .filter(({ points }) => points > 0)
           .slice(0, 7)
       }, resultsSelector)
 
       results[topic] = articles
       await clearSearch(page, topic)
+      await page.waitFor(1000)
     }
 
     await browser.close()

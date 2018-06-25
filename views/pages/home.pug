@@ -28,7 +28,7 @@ block content
         ul
           each topic in topics
             li
-              - var link = `https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story&query=${topic.name}`
+              - var link = `https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=all&query=${topic.name}`
               a(href=link, target="_blank")= topic.name.toUpperCase()
               small= ` x${topic.subscriber_ids.length}`
 

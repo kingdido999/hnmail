@@ -1,12 +1,6 @@
 const HackerNewsCrawler = require('../services/HackerNewsCrawler')
 ;(async () => {
-  const topics = [
-    'Artificial Intelligence',
-    'Blockchain',
-    'Programming',
-    'Interview',
-    'Show HN'
-  ]
+  const topics = ['side hustle']
 
   try {
     const results = await HackerNewsCrawler.fetchArticlesByTopics(topics)

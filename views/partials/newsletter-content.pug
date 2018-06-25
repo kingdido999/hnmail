@@ -8,8 +8,8 @@ each topic in Object.keys(topics)
             a(href=article.link)= article.title
           .info
             small
-              span= `${article.points} points by ` 
-              a(href=article.authorLink)= article.author
+              span= article.points > 0 ? `${article.points} points ` : ''
+              a(href=article.authorLink)= `by ${article.author}`
               span= ` ${article.date} | `
               a(href=article.hnLink)= article.comments
               span= ' | '
