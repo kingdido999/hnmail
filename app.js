@@ -36,7 +36,7 @@ router.get('/', async ctx => {
 
   const hotTopics = topics
     .sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
-    .slice(0, 50)
+    .slice(0, 40)
 
   await ctx.render('pages/home', {
     topics: hotTopics,

@@ -6,9 +6,10 @@
 body
   color: text-color
 
-a 
+a
   text-decoration: none
-  color: primary-color
+  color: text-color
+  border-bottom: 2px solid hsl(0,0%,90%)
 
 h1 
   font-size: 2.4rem
@@ -55,12 +56,13 @@ section#topics
     padding: 0
     li
       display: inline-block
-      padding: 0.4rem
-      a
-        color: text-color
-        border-bottom: 2px solid hsl(0,0%,90%)
+      padding: 0.5rem
       small
         color: primary-color
+
+section#faq
+  h3, p
+    text-align: left
 
 .subtitle 
   font-size: 1.2rem
