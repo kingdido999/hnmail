@@ -40,6 +40,7 @@ router.get('/', async ctx => {
 
   await ctx.render('pages/home', {
     topics: hotTopics,
+    topicsCount: topics.length,
     error: ctx.session.error
   })
   ctx.session.error = {}
