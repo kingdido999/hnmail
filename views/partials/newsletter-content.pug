@@ -1,23 +1,25 @@
-each topic in Object.keys(topics)
-  .topic= topic.toUpperCase()
-  if topics[topic].length > 0
-    .articles
-      each article in topics[topic]
-        .article
-          .title
-            a(href=article.link)= article.title
-          .info
-            small
-              span= article.points > 0 ? `${article.points} points ` : ''
-              a(href=article.authorLink)= `by ${article.author}`
-              span= ` ${article.date} | `
-              a(href=article.hnLink)= article.comments
-              span= ' | '
-              a(href=article.domain)= article.domain
-  else
-    p
-      | No story was found for this topic. Try update your topics 
-      a(href="https://hnmail.io") here
-      | .
+.email-content
+  each topic in Object.keys(topics)
+    .topic-content
+      h3.topic= topic.toUpperCase()
+      if topics[topic].length > 0
+        .articles
+          each article in topics[topic]
+            .article
+              .title
+                a(href=article.link)= article.title
+              .info
+                small
+                  span= article.points > 0 ? `${article.points} points ` : ''
+                  a(href=article.authorLink)= `by ${article.author}`
+                  span= ` ${article.date} | `
+                  a(href=article.hnLink)= article.comments
+                  span= ' | '
+                  a(href=article.domain)= article.domain
+      else
+        p
+          | No story was found for this topic. Try update your topics 
+          a(href="https://hnmail.io") here
+          | .
 
       
