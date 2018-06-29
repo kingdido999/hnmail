@@ -45,13 +45,16 @@ class HackerNewsCrawler {
             const link = div.querySelector('h2').lastElementChild
             const itemInfos = div.querySelector('ul').querySelectorAll('span')
             const [points, author, date, comments] = itemInfos
-            debugger
+            const domainMatch = link.href.match(/:\/\/(.[^/]+)/)
+
             return {
               title: link.textContent,
               link: link.href,
               authorLink: div.querySelector('.author').parentNode.href,
               hnLink: div.querySelector('.comments').parentNode.href,
-              domain: link.href.match(/:\/\/(.[^/]+)/)[1],
+              domain: domainMatch && domainMatch.length > 0
+                ? domainMatch[1]
+                : '',
               points: Number(points.textContent.split(' ')[0]),
               author: author.textContent,
               date: date.textContent,
