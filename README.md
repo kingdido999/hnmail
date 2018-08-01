@@ -1,9 +1,18 @@
 # HN Mail
 
+Hacker News Tailored For You.
+
 ## Development
 
-Provide environment variables:
+Initialize and edit environment variables:
 
 ```
 cp .env.example.js .env.js
+```
+
+Install dependencies and start development server:
+
+```bash
+yarn
+yarn start
 ```
