@@ -16,3 +16,9 @@ Install dependencies and start development server:
 yarn
 yarn start
 ```
+
+To compile changes from stylus folder:
+
+```bash
+yarn run stylus
+```
