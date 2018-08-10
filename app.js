@@ -223,4 +223,4 @@ app.listen(PORT)
 console.log(`Listening on port: ${PORT}`)
 
 // Every Friday at 8AM
-schedule.scheduleJob('0 15 * * 4', HackerNewsMailer.sendNewsletters)
+schedule.scheduleJob('0 15 * * 5', HackerNewsMailer.sendNewsletters)
