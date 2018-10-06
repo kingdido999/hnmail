@@ -12,6 +12,21 @@
   dependencies:
     "@types/babel-types" "*"
 
+"@types/events@*":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
+
+"@types/formidable@^1.0.31":
+  version "1.0.31"
+  resolved "https://registry.yarnpkg.com/@types/formidable/-/formidable-1.0.31.tgz#274f9dc2d0a1a9ce1feef48c24ca0859e7ec947b"
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
+
+"@types/node@*":
+  version "10.11.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.4.tgz#e8bd933c3f78795d580ae41d86590bfc1f4f389d"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1362,10 +1377,11 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-koa-body@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/koa-body/-/koa-body-4.0.1.tgz#341cfa5653cf3fd008dbac6dfa4482759ce0edfd"
+koa-body@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/koa-body/-/koa-body-4.0.4.tgz#70c04ba21b37f230476c280a41858dc37ca838ee"
   dependencies:
+    "@types/formidable" "^1.0.31"
     co-body "^5.1.1"
     formidable "^1.1.1"
 
