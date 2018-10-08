@@ -10,7 +10,7 @@
     "koa-body": "4.0.4",
     "koa-router": "7.4.0",
     "koa-session": "5.9.0",
-    "koa-static": "4.0.3",
+    "koa-static": "5.0.0",
     "koa-views": "6.1.4",
     "lodash": "4.17.11",
     "mongoose": "5.1.4",
