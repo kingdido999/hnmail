@@ -5,7 +5,7 @@
       if topics[topic].length > 0
         .articles
           each article in topics[topic]
-            .article
+            p.article
               .title
                 a(href=article.link)= article.title
               .info
