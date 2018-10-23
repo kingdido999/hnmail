@@ -6,7 +6,7 @@
     "test:mailer": "node test/mailer.js"
   },
   "dependencies": {
-    "koa": "2.5.3",
+    "koa": "2.6.1",
     "koa-body": "4.0.4",
     "koa-router": "7.4.0",
     "koa-session": "5.9.0",
