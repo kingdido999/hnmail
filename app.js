@@ -14,7 +14,7 @@ const User = require('./models/User')
 const Topic = require('./models/Topic')
 const Mailer = require('./services/Mailer')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
-const { isLocal } = require('./.env')
+const { isLocal, testEmailAddress } = require('./.env')
 
 mongoose.connect('mongodb://localhost/hnmail')
 const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
@@ -108,7 +108,7 @@ router.post('/subscribe', async (ctx, next) => {
 
     const totlaUserCount = await User.count()
     await Mailer.send({
-      to: 'kingdido999@gmail.com',
+      to: testEmailAddress,
       subject: `New user joined HN Mail`,
       text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal Users: ${totlaUserCount}`
     })

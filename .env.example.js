@@ -3,5 +3,6 @@ module.exports = {
     apiKey: '',
     domain: ''
   },
-  isLocal: true
+  isLocal: true,
+  testEmailAddress: 'info@hnmail.io'
 }
