@@ -16,7 +16,7 @@ const Mailer = require('./services/Mailer')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
 const { isLocal, testEmailAddress } = require('./.env')
 
-mongoose.connect('mongodb://localhost/hnmail')
+mongoose.connect('mongodb://localhost/hnmail', { useNewUrlParser: true })
 const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 const app = new Koa()
