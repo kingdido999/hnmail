@@ -20,7 +20,7 @@
     "nodemailer-mailgun-transport": "1.4.0",
     "pug": "2.0.3",
     "puppeteer": "1.10.0",
-    "ramda": "0.26.0"
+    "ramda": "0.26.1"
   },
   "devDependencies": {
     "nodemon": "1.18.7",
