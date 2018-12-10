@@ -6,7 +6,7 @@ block dynamicCss
 block content
   - var searchUrl = 'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=all'
   main#home
-    section#intro
+    section.text-center#intro
       .container
         h1
           span Hacker News
@@ -16,14 +16,13 @@ block content
         p.subtitle 
           | Too busy to keep up with stories you care about from 
           a(href="https://news.ycombinator.com/", target="_blank") Hacker News
-          | ? 
-        p.subtitle Specify topics you want and let stories come to you.
+          | ? Specify topics you are interested in and let stories come to you.
 
         form(action="/sample", method="get")
           div
             button.btn-default(type="submit") Sample Newsletter
 
-    section#topics
+    section.text-center#topics
       .container
         h2 🔥 Hot Topics
         ul
@@ -35,7 +34,7 @@ block content
                 small= ` x${topic.subscriber_ids.length}`
         p.text-light= `${topicsCount} topics in total`
     
-    section#subscribe
+    section.text-center#subscribe
       .container
         h2 🙋 Join HN Mail
         if error && error.message
@@ -43,8 +42,8 @@ block content
         form(action="/subscribe", method="post")
           .input-field
             label Topics I'm interested in
-            textarea(name="topics", rows="3" placeholder="Seperate topics by comma. E.g., Programming, Blockchain, Show HN", required="true")
-            p.text-light At most 5 topics. Can be updated later.
+            textarea(name="topics", rows="3" placeholder="Blockchain, Privacy, Rust", required="true")
+            p.text-light At most 5 topics. Separate by comma. You can always update them later.
           .input-field
             label Send weekly newsletter to
             input(type="email" name="email" placeholder="fan@hnmail.io", required="true")
@@ -53,32 +52,36 @@ block content
 
     section#faq
       .container
-        h2 🤔 Questions?
-        h3 Why did you make this?
-        p 
-          | Hacker News is a wonderful source of information which continues to inspire me to explore and learn. 
-          | Given tons of posts are created everyday, sometimes it could be difficult to keep up with stories that I’m interested in. 
-          | Wouldn’t it be great to be able to collect and digest stories regularly based on my own interests?
-        h3 How does it identify stories based on topics?
-        p.
-          We simply use provided topics as keywords to #[a(href=searchUrl) search] through HN stories and comments. The search is powered by Algolia which usually delivers good results.
-        h3 Is there a list of topics possible or can I input anything?
-        p Feel free to input anything you want. However, for the best result, it’s recommended to use keywords that show up frequently in HN titles. 
-        h3 How do I update topics?
-        p.
-          Simply #[a(href="#subscribe") resubscribe] with your updated topics and email address.
-        h3 How often do I receive newsletters?
-        p.
-         Newsletters are sent out at 8AM #[a(href="https://time.is/PDT", target="_blank") PDT] every Friday.
-        h3 More questions?
-        p.
-          Feel free to shoot me an Email at #[a(href="mailto:info@hnmail.io") info@hnmail.io]. We also have discussion threads on #[a(href="https://news.ycombinator.com/item?id=17387767", target="_blank") Hacker News] and #[a(href="https://www.indiehackers.com/forum/i-built-a-smart-newsletter-service-for-hacker-news-d48c771bb4", target="_blank") Indie Hackers].
+        h2.text-center 🤔 Questions?
+        details
+          summary What is Hacker News?
+          p Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by Paul Graham's investment fund and startup incubator, Y Combinator.
+        details
+          summary Why did you build this?
+          p Given tons of posts are created everyday on HN, sometimes it could be difficult to keep up with stories that I’m interested in. Wouldn’t it be great to be able to collect and digest stories regularly based on my own interests?
+        details 
+          summary What kind of topics should I subscribe to?
+          p You can subscribe to any topic you like. However, for the best result, it’s recommended to use keywords that show up frequently in HN titles. 
+        details 
+          summary How do I update topics?
+          p.
+            Simply #[a(href="#subscribe") resubscribe] with your updated topics and email address.
+        details
+          summary How does it identify stories based on topics?
+          p.
+            We simply use provided topics as keywords to #[a(href=searchUrl) search] through HN stories and comments. The search is powered by Algolia which usually delivers good results.
+        details
+          summary How often do I receive newsletters?
+          p.
+           Newsletters are sent out at 8AM #[a(href="https://time.is/PDT", target="_blank") PDT] every Friday.
+        details 
+          summary More questions?
+          p.
+            Feel free to shoot me an Email at #[a(href="mailto:info@hnmail.io") info@hnmail.io]. We also have discussion threads on #[a(href="https://news.ycombinator.com/item?id=17387767", target="_blank") Hacker News] and #[a(href="https://www.indiehackers.com/forum/i-built-a-smart-newsletter-service-for-hacker-news-d48c771bb4", target="_blank") Indie Hackers].
     
     hr
 
     footer
       .container
         p.
-          Copyright © 2018-present #[a(href="https://github.com/kingdido999") Desmond Ding]
-        p.
-          #[a(href="https://github.com/kingdido999/hnmail") Source Code]
+          Copyright © 2018-present #[a(href="https://github.com/kingdido999") Desmond Ding] | #[a(href="https://github.com/kingdido999/hnmail") Source Code]

@@ -10,16 +10,12 @@
                 a(href=article.link)= article.title
               .info
                 small
-                  span= article.points > 0 ? `${article.points} points ` : ''
-                  a(href=article.authorLink)= `by ${article.author}`
+                  span= article.points > 0 ? `${article.points} points |` : ''
                   span= ` ${article.date} | `
                   a(href=article.hnLink)= article.comments
-                  span= ' | '
-                  a(href=article.domain)= article.domain
       else
         p
           | No story was found for this topic. Try update your topics 
           a(href="https://hnmail.io") here
           | .
-
-      
+  p If HN Mail has been useful to you in some way, please consider telling your friends about it. If you have any questions or suggestions, feel free to reply to this email!

@@ -20,8 +20,10 @@ h1
 section 
   display: flex
   flex-direction: column
-  text-align: center
   padding: 1rem
+
+summary
+  font-weight: bold
 
 main#home 
   background-image: url('/svg/news.svg')
@@ -70,11 +72,11 @@ section#faq
     text-align: left
 
 .subtitle 
-  font-size: 1.2rem
+  font-size: 1.4rem
 
 .container 
   margin: 0 auto
-  width: 600px
+  width: 640px
   max-width: 100%
 
 form 
@@ -105,6 +107,8 @@ input, textarea, button
 input, textarea
   background: #eeeeee;
   padding: 1rem
+  &:focus
+    background: primary-light-color
 
 button 
   cursor: pointer

@@ -12,6 +12,7 @@ const R = require('ramda')
 const nanoid = require('nanoid')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
+const Newsletter = require('./models/Newsletter')
 const Mailer = require('./services/Mailer')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
 const { isLocal, testEmailAddress } = require('./.env')
@@ -47,8 +48,14 @@ router.get('/', async ctx => {
 })
 
 router.get('/sample', async ctx => {
-  const topics = require('./sample-topics')
-  await ctx.render('pages/sample', { topics })
+  const user = await User.findOne({ email: testEmailAddress }).exec()
+  const newsletter = await Newsletter
+    .find({ subscriber_id: user.id })
+    .limit(1)
+    .sort({ $natural: -1 })
+    .exec()
+  
+  await ctx.render('pages/sample', { topics: newsletter[0].topics })
 })
 
 router.post('/subscribe', async (ctx, next) => {
