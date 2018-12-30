@@ -13,6 +13,9 @@ module.exports = function (router) {
       subscriber_ids: { $not: { $size: 0 } }
     }).exec()
 
+    const newsletters = await Newsletter.find({}).exec()
+    const subscribers = await User.find({}).exec()
+
     const hotTopics = topics
       .sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
       .slice(0, 30)
@@ -20,8 +23,11 @@ module.exports = function (router) {
     await ctx.render('pages/home', {
       topics: hotTopics,
       topicsCount: topics.length,
+      newsletterCount: newsletters.length,
+      subscriberCount: subscribers.length,
       error: ctx.session.error
     })
+
     ctx.session.error = {}
   })
 
