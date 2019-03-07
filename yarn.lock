@@ -1600,10 +1600,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-koa-body@4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/koa-body/-/koa-body-4.0.8.tgz#1bf3b37847a7b0c0288ed056fbed1bcc0ed3815b"
-  integrity sha512-s98mw+8eieRJ0ueS1iamRzQ03CHr/rWHM5ijYie5fcFjMZbNyrgNFBBQwiCwHjphpBOlK+2mlVU+aE8eZ1XOew==
+koa-body@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/koa-body/-/koa-body-4.1.0.tgz#99295ee2e9543884e5730ae696780930b3821c44"
+  integrity sha512-rWkMfMaCjFmIAMohtjlrg4BqDzcotK5BdZhiwJu1ONuR1ceoFUjnH3wp0hEV39HuBlc9tI3eUUFMK4Cp6ccFtA==
   dependencies:
     "@types/formidable" "^1.0.31"
     co-body "^5.1.1"
