@@ -23,7 +23,7 @@
     "ramda": "0.26.1"
   },
   "devDependencies": {
-    "nodemon": "1.18.10",
+    "nodemon": "1.18.11",
     "stylus": "0.54.5"
   }
 }
