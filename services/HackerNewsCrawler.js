@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const { isLocal } = require('../.env')
 
 const BASE_URL =
-  'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=all'
+  'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
 const inputSelector = 'input[type="search"]'
 const resultsSelector = '.item-title-and-infos'
 
