@@ -5,7 +5,8 @@ const User = require('./models/User')
 const Topic = require('./models/Topic')
 const Newsletter = require('./models/Newsletter')
 const Mailer = require('./services/Mailer')
-const { testEmailAddress } = require('./.env')
+const { testEmailAddress, isLocal } = require('./.env')
+const DOMAIN = isLocal ? `http://localhost:3000` : 'https://hnmail.io'
 
 module.exports = function (router) {
   router.get('/', async ctx => {
