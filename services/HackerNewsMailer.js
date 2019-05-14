@@ -54,7 +54,8 @@ class HackerNewsMailer {
           engine: 'pug',
           context: {
             topics: userTopics,
-            unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`
+            unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`,
+            showAds: true
           }
         }
       })
