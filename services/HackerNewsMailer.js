@@ -6,7 +6,7 @@ const Newsletter = require('../models/Newsletter')
 const HackerNewsCrawler = require('./HackerNewsCrawler')
 const Mailer = require('./Mailer')
 const _ = require('lodash')
-const { isLocal } = require('../.env')
+const { isLocal, showAds } = require('../.env')
 const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 class HackerNewsMailer {
@@ -55,7 +55,7 @@ class HackerNewsMailer {
           context: {
             topics: userTopics,
             unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`,
-            showAds: false
+            showAds
           }
         }
       })

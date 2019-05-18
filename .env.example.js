@@ -4,5 +4,6 @@ module.exports = {
     domain: ''
   },
   isLocal: true,
-  testEmailAddress: 'info@hnmail.io'
+  testEmailAddress: 'info@hnmail.io',
+  showAds: false
 }
