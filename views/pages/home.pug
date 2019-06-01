@@ -20,7 +20,7 @@ block content
 
         form(action="/sample", method="get")
           div
-            button.btn-default(type="submit") Sample Newsletter
+            button.btn-primary(type="submit") Try Sample
 
     section.text-center#topics
       .container
@@ -48,7 +48,7 @@ block content
             label Send weekly newsletter to
             input(type="email" name="email" placeholder="fan@hnmail.io", required="true")
           div
-            button.btn-primary(type="submit") Subscribe
+            button.btn-default(type="submit") Subscribe
 
     section#faq
       .container
@@ -56,29 +56,21 @@ block content
         details
           summary What is Hacker News?
           p Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by Paul Graham's investment fund and startup incubator, Y Combinator.
-        details
-          summary Why did you build this?
-          p Given tons of posts are created everyday on HN, sometimes it could be difficult to keep up with stories that I’m interested in. Wouldn’t it be great to be able to collect and digest stories regularly based on my own interests?
-        details 
-          summary What kind of topics should I subscribe to?
-          p You can subscribe to any topic you like. However, for the best result, it’s recommended to use keywords that show up frequently in HN titles. 
         details 
           summary How do I update topics?
           p.
-            Simply #[a(href="#subscribe") resubscribe] with your updated topics and email address.
-        details
-          summary How does it identify stories based on topics?
-          p.
-            We simply use provided topics as keywords to #[a(href=searchUrl) search] through HN stories and comments. The search is powered by Algolia which usually delivers good results.
+            Simply subscribe again with your updated topics and email address. We'll send you an email to confirm the update.
         details
           summary How often do I receive newsletters?
           p.
            Newsletters are sent out at 8AM #[a(href="https://time.is/PDT", target="_blank") PDT] every Friday.
+        details
+          summary Why did you build this?
+          p Given tons of posts are created everyday on HN, sometimes it could be difficult to keep up with stories that I’m interested in. Wouldn’t it be great to be able to collect and digest stories regularly based on my own interests?
         details 
           summary More questions?
           p.
-            Feel free to shoot me an Email at #[a(href="mailto:info@hnmail.io") info@hnmail.io]. We also have discussion threads on #[a(href="https://news.ycombinator.com/item?id=17387767", target="_blank") Hacker News] and #[a(href="https://www.indiehackers.com/forum/i-built-a-smart-newsletter-service-for-hacker-news-d48c771bb4", target="_blank") Indie Hackers].
-    
+            Feel free to shoot me an Email at #[a(href="mailto:info@hnmail.io") info@hnmail.io].   
     hr
 
     footer
@@ -86,5 +78,3 @@ block content
         p= `${subscriberCount} subscribers | ${newsletterCount} newsletters sent`
         p.
           Copyright © 2018-present #[a(href="https://github.com/kingdido999") Desmond Ding]
-        p.
-          #[a(href="https://github.com/kingdido999/hnmail") Source Code]

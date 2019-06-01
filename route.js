@@ -19,7 +19,7 @@ module.exports = function (router) {
 
     const hotTopics = topics
       .sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
-      .slice(0, 30)
+      .slice(0, 20)
 
     await ctx.render('pages/home', {
       topics: hotTopics,

@@ -5,6 +5,7 @@
 
 body
   color: text-color
+  line-height: 1.5
 
 a
   text-decoration: none
@@ -21,6 +22,9 @@ section
   display: flex
   flex-direction: column
   padding: 1rem
+
+details
+  margin: 1rem 0
 
 summary
   font-weight: bold
@@ -72,7 +76,7 @@ section#faq
     text-align: left
 
 .subtitle 
-  font-size: 1.4rem
+  font-size: 1.3rem
 
 .container 
   margin: 0 auto
@@ -105,16 +109,16 @@ input, textarea, button
   text-align: center
 
 input, textarea
-  background: #eeeeee;
+  background: #eeeeee
   padding: 1rem
   &:focus
-    background: primary-light-color
+    box-shadow: -5px 5px 10px primary-light-color
 
 button 
   cursor: pointer
   font-weight: 600
   letter-spacing: 1px
-  min-width: 200px
+  min-width: 160px
   padding: 1rem
   margin: 1rem
   box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08)
