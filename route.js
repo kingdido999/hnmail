@@ -15,7 +15,10 @@ module.exports = function (router) {
     }).exec()
 
     const newsletters = await Newsletter.find({}).exec()
-    const subscribers = await User.find({}).exec()
+    const subscribers = await User.find({
+      is_verified: true,
+      is_subscribed: true
+    }).exec()
 
     const hotTopics = topics
       .sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
@@ -109,13 +112,6 @@ module.exports = function (router) {
         }
       })
 
-      const totlaUserCount = await User.count()
-      await Mailer.send({
-        to: testEmailAddress,
-        subject: `New user joined HN Mail`,
-        text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal Users: ${totlaUserCount}`
-      })
-
       await ctx.render('pages/verification', {
         email,
         topics: topicString
@@ -146,6 +142,18 @@ module.exports = function (router) {
         }
 
         await topic.save()
+      })
+      
+      const topicString = topicList.join(', ').toUpperCase()
+      const subscribers = await User.find({
+        is_verified: true,
+        is_subscribed: true
+      }).exec()
+
+      await Mailer.send({
+        to: testEmailAddress,
+        subject: `New user joined HN Mail`,
+        text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal subscribers: ${subscribers.length}`
       })
 
       await ctx.render('pages/welcome', {
