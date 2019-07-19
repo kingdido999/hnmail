@@ -32,7 +32,7 @@ block content
               a(href=link, target="_blank")= topic.name.toUpperCase()
               if (topic.subscriber_ids.length > 1)
                 small= ` x${topic.subscriber_ids.length}`
-        p.text-light= `${topicsCount} topics in total`
+        a(href="/topics").text-light= `${topicsCount} topics in total`
     
     section.text-center#subscribe
       .container

@@ -1,0 +1,17 @@
+extends ../layouts/primary.pug
+
+block dynamicCss
+  link(rel="stylesheet", href="css/main.css")
+
+block content
+  main
+    section
+      .container
+        h2= `${topics.length} Topics`
+        ul
+          each topic in topics
+            li
+              - var link = `${searchUrl}&query=${topic.name}`
+              a(href=link, target="_blank")= topic.name.toUpperCase()
+              if (topic.subscriber_ids.length > 1)
+                small= ` x${topic.subscriber_ids.length}`

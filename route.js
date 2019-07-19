@@ -43,6 +43,17 @@ module.exports = function (router) {
     await ctx.render('pages/sample', { topics: newsletter[0].topics })
   })
 
+  router.get('/topics', async ctx => {
+    const topics = await Topic.find({
+      subscriber_ids: { $not: { $size: 0 } }
+    }).exec()
+
+
+    await ctx.render('pages/topics', {
+      topics: topics.sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
+    })
+  })
+
   router.post('/subscribe', async (ctx, next) => {
     const { email, topics } = ctx.request.body
     const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
