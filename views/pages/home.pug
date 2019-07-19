@@ -32,7 +32,7 @@ block content
               a(href=link, target="_blank")= topic.name.toUpperCase()
               if (topic.subscriber_ids.length > 1)
                 small= ` x${topic.subscriber_ids.length}`
-        a(href="/topics").text-light= `${topicsCount} topics in total`
+        a(href="/topics").text-light= `View all ${topicsCount} topics`
     
     section.text-center#subscribe
       .container
@@ -64,10 +64,6 @@ block content
         details
           summary Why did you build this?
           p Given tons of posts are created everyday on HN, sometimes it could be difficult to keep up with stories that I’m interested in. Wouldn’t it be great to be able to collect and digest stories regularly based on my own interests?
-        details 
-          summary More questions?
-          p.
-            Feel free to shoot me an Email at #[a(href="mailto:info@hnmail.io") info@hnmail.io].   
     hr
 
     footer
