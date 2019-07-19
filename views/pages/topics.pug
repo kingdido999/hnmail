@@ -4,6 +4,7 @@ block dynamicCss
   link(rel="stylesheet", href="css/main.css")
 
 block content
+  - var searchUrl = 'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=all'
   main
     section.text-center#topics
       .container
