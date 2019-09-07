@@ -13,7 +13,6 @@ const route = require('./route')
 
 mongoose.connect('mongodb://localhost/hnmail', { useNewUrlParser: true })
 const PORT = 3000
-const DOMAIN = isLocal ? `http://localhost:${PORT}` : 'https://hnmail.io'
 
 const app = new Koa()
 

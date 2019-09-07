@@ -6,7 +6,7 @@ const Newsletter = require('../models/Newsletter')
 const HackerNewsCrawler = require('./HackerNewsCrawler')
 const Mailer = require('./Mailer')
 const _ = require('lodash')
-const { isLocal, showAds } = require('../.env')
+const { isLocal, testEmailAddress, showAds } = require('../.env')
 const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 class HackerNewsMailer {
@@ -33,6 +33,13 @@ class HackerNewsMailer {
       console.log(results)
     } catch (err) {
       console.error('Failed to fetch articles.')
+
+      await Mailer.send({
+        to: testEmailAddress,
+        subject: '[HNMail Exception] Failed to fetch articles by topcis',
+        text: err.toString()
+      })
+
       throw err
     }
 

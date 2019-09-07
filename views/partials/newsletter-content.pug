@@ -7,11 +7,11 @@
           each article in topics[topic]
             p.article
               .title
-                a(href=article.link)= article.title
+                a(href=article.url)= article.title
               .info
                 small
                   span= article.points > 0 ? `${article.points} points | ` : ''
-                  a(href=article.hnLink)= article.comments
+                  a(href=article.hnUrl)= `${article.num_comments} comments`
       else
         p
           | No story was found for this topic. Try update your topics 
