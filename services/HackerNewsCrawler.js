@@ -4,7 +4,7 @@ const { isLocal } = require('../.env')
 const BASE_URL =
   'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=story'
 const inputSelector = 'input[type="search"]'
-const resultsSelector = '.item-title-and-infos'
+const resultsSelector = '.Story_data'
 
 class HackerNewsCrawler {
   static async fetchArticlesByTopics (topics) {
@@ -42,16 +42,18 @@ class HackerNewsCrawler {
         const divs = Array.from(document.querySelectorAll(resultsSelector))
         return divs
           .map(div => {
-            const link = div.querySelector('h2').lastElementChild
-            const itemInfos = div.querySelector('ul').querySelectorAll('span')
-            const [points, author, date, comments] = itemInfos
+            const link = div.querySelector('.Story_title > a')
+            const [points, author, date, comments, originalLink] = div
+              .querySelector('.Story_meta')
+              .querySelectorAll('span:not(.Story_separator) > a')
+
             const domainMatch = link.href.match(/:\/\/(.[^/]+)/)
 
             return {
               title: link.textContent,
-              link: link.href,
-              authorLink: div.querySelector('.author').parentNode.href,
-              hnLink: div.querySelector('.comments').parentNode.href,
+              link: originalLink ? originalLink.href : link.href,
+              authorLink: author.href,
+              hnLink: points.href,
               domain: domainMatch && domainMatch.length > 0
                 ? domainMatch[1]
                 : '',

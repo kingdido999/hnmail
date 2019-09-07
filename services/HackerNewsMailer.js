@@ -30,6 +30,7 @@ class HackerNewsMailer {
 
     try {
       results = await HackerNewsCrawler.fetchArticlesByTopics(topicNames)
+      console.log(results)
     } catch (err) {
       console.error('Failed to fetch articles.')
       throw err
