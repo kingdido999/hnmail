@@ -12,8 +12,7 @@
                 small
                   span= article.points > 0 ? `${article.points} points | ` : ''
                   a(href=article.hnUrl)= `${article.num_comments} comments | `
-                  if article.url
-                    a(href='https://peel.fun/?url=' + article.url) clean view
+                  a(href='https://peel.fun/?url=' + article.url ? article.url : article.hnUrl) clean view
       else
         p
           | No story was found for this topic. Try update your topics 
