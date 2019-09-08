@@ -7,7 +7,7 @@
           each article in topics[topic]
             p.article
               .title
-                a(href=article.url)= article.title
+                a(href=article.url ? article.url : article.hnUrl)= article.title
               .info
                 small
                   span= article.points > 0 ? `${article.points} points | ` : ''
