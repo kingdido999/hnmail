@@ -10,8 +10,10 @@
                 a(href=article.url ? article.url : article.hnUrl)= article.title
               .info
                 small
-                  span= article.points > 0 ? `${article.points} points | ` : ''
-                  a(href=article.hnUrl)= `${article.num_comments} comments | `
+                  span= `${article.points} points`
+                  span= ' | '
+                  a(href=article.hnUrl)= `${article.num_comments} comments`
+                  span= ' | '
                   a(href='https://peel.fun/?url=' + (article.url ? article.url : article.hnUrl)) clean view
       else
         p

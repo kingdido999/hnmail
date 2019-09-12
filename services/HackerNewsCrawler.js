@@ -1,27 +1,28 @@
-const HackerNewsSearchAPI = require('./HackerNewsSearchAPI')
+const HackerNewsSearchAPI = require("./HackerNewsSearchAPI");
 
-const getDateTimestampSinceDays = (sinceDays) => {
-  return Math.trunc(new Date().setDate(new Date().getDate() - sinceDays) / 1000)
+const getDateTimestampSinceDays = sinceDays => {
+  return Math.trunc(
+    new Date().setDate(new Date().getDate() - sinceDays) / 1000
+  );
 };
 
 class HackerNewsCrawler {
-  static async fetchArticlesByTopics (topics) {
-    console.log('Fetching articles...')
-    
-    const api = new HackerNewsSearchAPI()
-    const sinceDays = getDateTimestampSinceDays(7)
-    const numericFilters = `created_at_i>${sinceDays}`
-    const tags = 'story'
+  static async fetchArticlesByTopics(topics) {
+    console.log("Fetching articles...");
 
-    let results = {}
+    const api = new HackerNewsSearchAPI();
+    const sinceDays = getDateTimestampSinceDays(7);
+    const numericFilters = `created_at_i>${sinceDays}`;
+    const tags = "story";
+
+    let results = {};
 
     for (let i = 0; i < topics.length; i++) {
-      const topic = topics[i]
-      console.log('Searching topic: %s', topic)
-      
-      const { data } = await api.search({ query: topic, numericFilters, tags })
+      const topic = topics[i];
+      console.log("Searching topic: %s", topic);
+
+      const { data } = await api.search({ query: topic, numericFilters, tags });
       const articles = data.hits
-        .filter(hit => hit.num_comments > 0)
         .filter(
           (item, index, items) =>
             index === items.findIndex(t => t.title === item.title)
@@ -30,17 +31,17 @@ class HackerNewsCrawler {
           return {
             ...hit,
             hnUrl: `https://news.ycombinator.com/item?id=${hit.objectID}`
-          }
+          };
         })
-        .slice(0, 7)
+        .slice(0, 7);
 
-      results[topic] = articles
+      results[topic] = articles;
     }
 
-    console.log('Fetching done.')
+    console.log("Fetching done.");
 
-    return results
+    return results;
   }
 }
 
-module.exports = HackerNewsCrawler
+module.exports = HackerNewsCrawler;
