@@ -1,7 +1,7 @@
 extends ../layouts/primary.pug
 
 block dynamicCss
-  link(rel="stylesheet", href="css/main.css")
+  link(rel="stylesheet", href="/css/main.css")
 
 block content
   main
@@ -10,6 +10,6 @@ block content
     section
       .container
         h2 Welcome to HN Mail! 🎉
-        p You'll start receiving newsletters with the following topics: 
+        p You'll start receiving newsletters with the following topics:
         p.text-primary
           strong= topics

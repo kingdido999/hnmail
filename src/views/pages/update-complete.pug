@@ -1,7 +1,7 @@
 extends ../layouts/primary.pug
 
 block dynamicCss
-  link(rel="stylesheet", href="css/main.css")
+  link(rel="stylesheet", href="/css/main.css")
 
 block content
   main
@@ -10,6 +10,6 @@ block content
     section
       .container
         h2 Updated Successfully!
-        p You have successfully updated your topics to: 
+        p You have successfully updated your topics to:
         p.text-primary
           strong= topics

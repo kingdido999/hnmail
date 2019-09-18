@@ -2,7 +2,7 @@
   each topic in Object.keys(topics)
     .topic-content
       h3.topic
-        - var link = `/topics/${topic}`
+        - var link = `${domain}/topics/${topic}`
         a(href=link)= topic.toUpperCase()
       if topics[topic].length > 0
         .articles

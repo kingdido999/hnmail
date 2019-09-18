@@ -1,7 +1,7 @@
 extends ../layouts/primary.pug
 
 block dynamicCss
-  link(rel="stylesheet", href="css/main.css")
+  link(rel="stylesheet", href="/css/main.css")
 
 block content
   main
@@ -10,7 +10,7 @@ block content
     section
       .container
         h2 Email Verification
-        p You have requested to update your topics to: 
+        p You have requested to update your topics to:
         p.text-primary
           strong= topics
         p We've sent you a verification email. Please click the link included in the email and you're all set.

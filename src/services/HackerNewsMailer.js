@@ -58,10 +58,11 @@ class HackerNewsMailer {
         to: user.email,
         subject,
         template: {
-          name: 'views/emails/newsletter.pug',
+          name: 'src/views/emails/newsletter.pug',
           engine: 'pug',
           context: {
             topics: userTopics,
+            domain: DOMAIN,
             unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`,
             showAds
           }

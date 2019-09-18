@@ -42,7 +42,10 @@ module.exports = function(router) {
       .sort({ $natural: -1 })
       .exec()
 
-    await ctx.render('pages/sample', { topics: newsletter[0].topics })
+    await ctx.render('pages/sample', {
+      topics: newsletter[0].topics,
+      domain: DOMAIN
+    })
   })
 
   router.get('/topics', async ctx => {
@@ -53,7 +56,8 @@ module.exports = function(router) {
     await ctx.render('pages/topics', {
       topics: topics.sort(
         (a, b) => b.subscriber_ids.length - a.subscriber_ids.length
-      )
+      ),
+      domain: DOMAIN
     })
   })
 
@@ -63,7 +67,8 @@ module.exports = function(router) {
     const res = await HNCrawler.fetchArticlesByTopics([name], 14)
 
     await ctx.render('pages/sample', {
-      topics: res
+      topics: res,
+      domain: DOMAIN
     })
   })
 
