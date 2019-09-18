@@ -4,7 +4,6 @@ block dynamicCss
   link(rel="stylesheet", href="css/main.css")
 
 block content
-  - var searchUrl = 'https://hn.algolia.com/?sort=byPopularity&prefix&page=0&dateRange=pastWeek&type=all'
   main#home
     section.text-center#intro
       .container
@@ -13,8 +12,8 @@ block content
           br
           span Tailored For You
 
-        p.subtitle 
-          | Too busy to keep up with stories you care about from 
+        p.subtitle
+          | Too busy to keep up with stories you care about from!{' '}
           a(href="https://news.ycombinator.com/", target="_blank") Hacker News
           | ? Specify topics you are interested in and let stories come to you.
 
@@ -28,12 +27,12 @@ block content
         ul
           each topic in topics
             li
-              - var link = `${searchUrl}&query=${topic.name}`
-              a(href=link, target="_blank")= topic.name.toUpperCase()
+              - var link = `/topics/${topic.name}`
+              a(href=link)= topic.name.toUpperCase()
               if (topic.subscriber_ids.length > 1)
                 small= ` x${topic.subscriber_ids.length}`
         a(href="/topics").text-light= `View all ${topicsCount} topics`
-    
+
     section.text-center#subscribe
       .container
         h2 🙋 Join HN Mail
@@ -57,7 +56,7 @@ block content
           summary When do I receive newsletters?
           p.
            Newsletters are sent out at 8AM #[a(href="https://time.is/PDT", target="_blank") PDT] every Friday.
-        details 
+        details
           summary How do I update topics?
           p.
             Simply subscribe again with your updated topics and email address. We'll send you an email to confirm the update.

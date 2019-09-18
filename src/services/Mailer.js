@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 const mg = require('nodemailer-mailgun-transport')
-const { mailgun } = require('../.env')
+const { mailgun } = require('../../.env')
 const R = require('ramda')
 
 const transporter = nodemailer.createTransport(
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport(
 )
 
 class Mailer {
-  static async send (mailOptions) {
+  static async send(mailOptions) {
     const mergedOptions = R.merge(
       {
         from: 'HN Mail <info@hnmail.io>'

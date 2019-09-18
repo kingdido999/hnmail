@@ -7,8 +7,8 @@ class HackerNewsSearchAPI {
     })
   }
 
-  search (params) {
-    return this.axios.get('/search', { params }) 
+  search(params) {
+    return this.axios.get('/search', { params })
   }
 }
 

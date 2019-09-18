@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "DEBUG=koa* nodemon app.js",
-    "stylus": "stylus --watch assets/stylus/main.styl assets/stylus/email.styl --out assets/css --compress",
+    "start": "DEBUG=koa* nodemon src/index.js",
+    "stylus": "stylus --watch src/assets/stylus/main.styl src/assets/stylus/email.styl --out src/assets/css --compress",
     "test:crawler": "node test/crawler.js",
     "test:mailer": "node test/mailer.js"
   },

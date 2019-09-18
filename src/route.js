@@ -1,14 +1,14 @@
-const _ = require('lodash')
 const R = require('ramda')
 const nanoid = require('nanoid')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
 const Newsletter = require('./models/Newsletter')
 const Mailer = require('./services/Mailer')
-const { testEmailAddress, isLocal } = require('./.env')
+const HNCrawler = require('./services/HackerNewsCrawler')
+const { testEmailAddress, isLocal } = require('../.env')
 const DOMAIN = isLocal ? `http://localhost:3000` : 'https://hnmail.io'
 
-module.exports = function (router) {
+module.exports = function(router) {
   router.get('/', async ctx => {
     const topics = await Topic.find({
       subscriber_ids: { $not: { $size: 0 } }
@@ -37,12 +37,11 @@ module.exports = function (router) {
 
   router.get('/sample', async ctx => {
     const user = await User.findOne({ email: testEmailAddress }).exec()
-    const newsletter = await Newsletter
-      .find({ subscriber_id: user.id })
+    const newsletter = await Newsletter.find({ subscriber_id: user.id })
       .limit(1)
       .sort({ $natural: -1 })
       .exec()
-    
+
     await ctx.render('pages/sample', { topics: newsletter[0].topics })
   })
 
@@ -51,9 +50,20 @@ module.exports = function (router) {
       subscriber_ids: { $not: { $size: 0 } }
     }).exec()
 
-
     await ctx.render('pages/topics', {
-      topics: topics.sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
+      topics: topics.sort(
+        (a, b) => b.subscriber_ids.length - a.subscriber_ids.length
+      )
+    })
+  })
+
+  router.get('/topics/:name', async ctx => {
+    const { name } = ctx.params
+
+    const res = await HNCrawler.fetchArticlesByTopics([name], 14)
+
+    await ctx.render('pages/sample', {
+      topics: res
     })
   })
 
@@ -124,7 +134,9 @@ module.exports = function (router) {
     const user = await User.findOne({ email, token }).exec()
 
     if (user) {
-      const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+      const topicList = topics
+        .split(',')
+        .map(topic => topic.trim().toLowerCase())
       user.topics = topicList
       user.is_verified = true
       user.is_subscribed = true
@@ -143,7 +155,7 @@ module.exports = function (router) {
 
         await topic.save()
       })
-      
+
       const topicString = topicList.join(', ').toUpperCase()
       const subscribers = await User.find({
         is_verified: true,
@@ -169,7 +181,9 @@ module.exports = function (router) {
     const user = await User.findOne({ email, token }).exec()
 
     if (user) {
-      const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+      const topicList = topics
+        .split(',')
+        .map(topic => topic.trim().toLowerCase())
       const topicsToBeRemoved = R.difference(user.topics, topicList)
 
       topicsToBeRemoved.forEach(async name => {

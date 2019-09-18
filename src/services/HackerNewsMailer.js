@@ -6,14 +6,14 @@ const Newsletter = require('../models/Newsletter')
 const HackerNewsCrawler = require('./HackerNewsCrawler')
 const Mailer = require('./Mailer')
 const _ = require('lodash')
-const { isLocal, testEmailAddress, showAds } = require('../.env')
+const { isLocal, testEmailAddress, showAds } = require('../../.env')
 const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 class HackerNewsMailer {
   // 1. Get all topics from DB.
   // 2. Use HackerNewsCrawler to fetch articles for all topics.
   // 3. Get each user's topics, select all related articles and send email.
-  static async sendNewsletters () {
+  static async sendNewsletters() {
     mongoose.connect('mongodb://localhost/hnmail')
 
     const topics = await Topic.find({
@@ -72,7 +72,7 @@ class HackerNewsMailer {
   }
 }
 
-function getRandomTitleFromTopics (topics) {
+function getRandomTitleFromTopics(topics) {
   const nonEmptyTopics = R.filter(topic => topic.length > 0, topics)
   if (Object.keys(nonEmptyTopics).length > 0) {
     return _.sample(nonEmptyTopics)[0].title

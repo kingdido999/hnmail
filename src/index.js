@@ -8,7 +8,6 @@ const koaBody = require('koa-body')
 const mongoose = require('mongoose')
 const schedule = require('node-schedule')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
-const { isLocal } = require('./.env')
 const route = require('./route')
 
 mongoose.connect('mongodb://localhost/hnmail', { useNewUrlParser: true })
@@ -18,7 +17,7 @@ const app = new Koa()
 
 app.keys = ['some secret hurr']
 app.use(session(app))
-app.use(serve('assets'))
+app.use(serve('src/assets'))
 app.use(views(path.join(__dirname, '/views'), { extension: 'pug' }))
 app.use(koaBody())
 

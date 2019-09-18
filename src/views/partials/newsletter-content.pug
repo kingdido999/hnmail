@@ -1,7 +1,9 @@
 .email-content
   each topic in Object.keys(topics)
     .topic-content
-      h3.topic= topic.toUpperCase()
+      h3.topic
+        - var link = `/topics/${topic}`
+        a(href=link)= topic.toUpperCase()
       if topics[topic].length > 0
         .articles
           each article in topics[topic]
@@ -17,7 +19,7 @@
                   a(href='https://peel.fun/?url=' + (article.url ? article.url : article.hnUrl)) clean view
       else
         p
-          | No story was found for this topic. Try update your topics 
+          | No story was found for this topic. Try update your topics
           a(href="https://hnmail.io/#subscribe") here
           | .
   if showAds
