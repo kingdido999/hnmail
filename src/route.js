@@ -36,14 +36,21 @@ module.exports = function(router) {
   })
 
   router.get('/sample', async ctx => {
-    const user = await User.findOne({ email: testEmailAddress }).exec()
-    const newsletter = await Newsletter.find({ subscriber_id: user.id })
-      .limit(1)
-      .sort({ $natural: -1 })
-      .exec()
+    const { topics } = ctx.request.query
+    const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+
+    if (topicList.length > 5) {
+      ctx.session.error = {
+        message: 'Number of topics should not be more than 5.'
+      }
+      ctx.redirect('/#subscribe')
+      return next()
+    }
+
+    const res = await HNCrawler.fetchArticlesByTopics(topicList)
 
     await ctx.render('pages/sample', {
-      topics: newsletter[0].topics,
+      topics: res,
       domain: DOMAIN
     })
   })
@@ -74,13 +81,22 @@ module.exports = function(router) {
 
   router.post('/subscribe', async (ctx, next) => {
     const { email, topics } = ctx.request.body
+
+    if (email === '') {
+      ctx.session.error = {
+        message: 'Please fill out your Email.'
+      }
+      ctx.redirect('/#subscribe')
+      return next()
+    }
+
     const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
 
     if (topicList.length > 5) {
       ctx.session.error = {
         message: 'Number of topics should not be more than 5.'
       }
-      ctx.redirect('/')
+      ctx.redirect('/#subscribe')
       return next()
     }
 
@@ -97,7 +113,7 @@ module.exports = function(router) {
         to: email,
         subject: 'Please Verify Your HN Mail Update',
         template: {
-          name: 'views/emails/update.pug',
+          name: 'src/views/emails/update.pug',
           engine: 'pug',
           context: {
             topics: topicString,
@@ -118,7 +134,7 @@ module.exports = function(router) {
         to: email,
         subject: 'Please Verify Your HN Mail Account',
         template: {
-          name: 'views/emails/verification.pug',
+          name: 'src/views/emails/verification.pug',
           engine: 'pug',
           context: {
             link: `${DOMAIN}/verify?email=${email}&topics=${topics}&token=${token}`,

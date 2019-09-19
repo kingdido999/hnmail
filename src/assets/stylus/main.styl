@@ -15,10 +15,10 @@ a
     color: primary-color
     border-bottom: 2px solid primary-color
 
-h1 
+h1
   font-size: 2.4rem
 
-section 
+section
   display: flex
   flex-direction: column
   padding: 1rem
@@ -32,7 +32,7 @@ summary
 main#home
   position: relative
 
-main#home:after 
+main#home:after
   position: absolute
   top: 0
   left: 0
@@ -50,21 +50,21 @@ section#verify-email
   background-image: url('/svg/mail.svg')
   background-repeat: no-repeat
   background-size: contain
-  background-position: top 
+  background-position: top
   height: 300px
 
 section#verify-complete
   background-image: url('/svg/beer.svg')
   background-repeat: no-repeat
   background-size: contain
-  background-position: top 
+  background-position: top
   height: 300px
 
 section#unsubscribed
   background-image: url('/svg/chilling.svg')
   background-repeat: no-repeat
   background-size: contain
-  background-position: top 
+  background-position: top
   height: 300px
 
 section#intro h1
@@ -86,33 +86,36 @@ section#faq
   h3, p
     text-align: left
 
-.subtitle 
+.subtitle
   font-size: 1.3rem
 
-.container 
+.container
   margin: 0 auto
   width: 640px
   max-width: 100%
 
-form 
+form
   display: flex
   flex-direction: column
   margin: 1rem auto
   max-width: 300px;
 
-.input-field 
+.input-field
   margin: 1rem 0
   display: flex
   flex-direction: column
 
-.input-field label 
+.input-field label
   margin: 0.4rem
   font-size: 1.2rem
 
-.input-field input 
-  margin: 0.4rem
+.input-field input
+  margin: 1rem
 
-input, textarea, button 
+.input-field textarea
+  margin: 1rem
+
+input, textarea, button
   font-size: 1rem
   outline: none
   border: 1px solid transparent
@@ -134,30 +137,32 @@ input, textarea
 textarea
   font-family: inherit
 
-button 
+button
   cursor: pointer
   font-weight: 600
   letter-spacing: 1px
-  min-width: 160px
+  min-width: 140px
   padding: 1rem
-  margin: 1rem
+  margin: 1rem auto
 
-:focus 
+:focus
   outline: 0
 
-.btn-default 
+.btn-default
   background: accent-color
   color: white
 
-.btn-primary 
+.btn-primary
   background: primary-color
   color: white
 
-.error-message 
-  font-size: 1.2rem
-  border-left: 4px solid primary-color
-  max-width: 400px;
-  margin: 0 auto;
+.error-message
+  background: primary-color
+  max-width: 300px
+  margin: 0 auto
+  padding: 0.4rem
+  color: white
+  border-radius: 4px
 
 hr
   border-width: 0

@@ -18,8 +18,8 @@ block content
           | ? Specify topics you are interested in and let stories come to you.
 
         form(action="/sample", method="get")
-          div
-            button.btn-primary(type="submit") Try Sample
+          input(type="hidden", name="topics", value="privacy,rust,show hn,ask hn")
+          button.btn-primary(type="submit") Try Sample
 
     section.text-center#topics
       .container
@@ -38,16 +38,16 @@ block content
         h2 🙋 Join HN Mail
         if error && error.message
           .error-message= error.message
-        form(action="/subscribe", method="post")
+        form
           .input-field
             label Topics I'm interested in
             textarea(name="topics", rows="3" placeholder="blockchain, privacy, rust", required="true")
             p.text-light At most 5 topics. Separate by comma. You can always update them later.
+            button.btn-default(type="submit", formaction="/sample", formmethod="get") Preview
           .input-field
             label Send weekly newsletter to
-            input(type="email" name="email" placeholder="fan@hnmail.io", required="true")
-          div
-            button.btn-default(type="submit") Subscribe
+            input(type="email" name="email" placeholder="fan@hnmail.io")
+            button.btn-primary(type="submit", formaction="/subscribe", formmethod="post") Subscribe
 
     section#faq
       .container
