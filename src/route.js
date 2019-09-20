@@ -35,8 +35,14 @@ module.exports = function(router) {
     ctx.session.error = {}
   })
 
-  router.get('/sample', async ctx => {
+  router.get('/sample', async (ctx, next) => {
     const { topics } = ctx.request.query
+
+    if (!topics) {
+      ctx.redirect('/#subscribe')
+      return next()
+    }
+
     const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
 
     if (topicList.length > 5) {
