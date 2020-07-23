@@ -10,6 +10,7 @@ const mongoose = require('mongoose')
 const schedule = require('node-schedule')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
 const route = require('./route')
+const { secrets } = require('../.env')
 
 mongoose.connect('mongodb://localhost/hnmail', {
   useNewUrlParser: true,
@@ -18,18 +19,20 @@ mongoose.connect('mongodb://localhost/hnmail', {
 })
 
 const PORT = 3000
+const CACHE_TIMEOUT = 10000
 
 cache.configure(
   {
-    '/': 6000,
-    '/sample': 6000,
+    '/': CACHE_TIMEOUT,
+    '/sample': CACHE_TIMEOUT,
+    '/topics': CACHE_TIMEOUT,
   },
-  { debug: true }
+  { debug: false }
 )
 
 const app = new Koa()
 
-app.keys = ['some secret hurr']
+app.keys = secrets
 app.use(cache.middleware())
 app.use(session(app))
 app.use(serve('src/assets'))
