@@ -7,8 +7,8 @@ const transporter = nodemailer.createTransport(
   mg({
     auth: {
       api_key: mailgun.apiKey,
-      domain: mailgun.domain
-    }
+      domain: mailgun.domain,
+    },
   })
 )
 
@@ -16,16 +16,20 @@ class Mailer {
   static async send(mailOptions) {
     const mergedOptions = R.merge(
       {
-        from: 'HN Mail <info@hnmail.io>'
+        from: 'HN Mail <info@hnmail.io>',
       },
       mailOptions
     )
+
+    console.log('Sending mail...')
+    console.table(mailOptions)
 
     try {
       const info = await transporter.sendMail(mergedOptions)
       console.log('Message sent: %s', info.messageId)
     } catch (err) {
-      console.log(err)
+      console.error('Failed to send email.')
+      console.error(err)
     }
   }
 }

@@ -8,16 +8,16 @@ const HNCrawler = require('./services/HackerNewsCrawler')
 const { testEmailAddress, isLocal } = require('../.env')
 const DOMAIN = isLocal ? `http://localhost:3000` : 'https://hnmail.io'
 
-module.exports = function(router) {
-  router.get('/', async ctx => {
+module.exports = function (router) {
+  router.get('/', async (ctx) => {
     const topics = await Topic.find({
-      subscriber_ids: { $not: { $size: 0 } }
+      subscriber_ids: { $not: { $size: 0 } },
     }).exec()
 
     const newsletters = await Newsletter.find({}).exec()
     const subscribers = await User.find({
       is_verified: true,
-      is_subscribed: true
+      is_subscribed: true,
     }).exec()
 
     const hotTopics = topics
@@ -29,7 +29,7 @@ module.exports = function(router) {
       topicsCount: topics.length,
       newsletterCount: newsletters.length,
       subscriberCount: subscribers.length,
-      error: ctx.session.error
+      error: ctx.session.error,
     })
 
     ctx.session.error = {}
@@ -43,11 +43,13 @@ module.exports = function(router) {
       return next()
     }
 
-    const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+    const topicList = topics
+      .split(',')
+      .map((topic) => topic.trim().toLowerCase())
 
     if (topicList.length > 5) {
       ctx.session.error = {
-        message: 'Number of topics should not be more than 5.'
+        message: 'Number of topics should not be more than 5.',
       }
       ctx.redirect('/#subscribe')
       return next()
@@ -57,31 +59,31 @@ module.exports = function(router) {
 
     await ctx.render('pages/sample', {
       topics: res,
-      domain: DOMAIN
+      domain: DOMAIN,
     })
   })
 
-  router.get('/topics', async ctx => {
+  router.get('/topics', async (ctx) => {
     const topics = await Topic.find({
-      subscriber_ids: { $not: { $size: 0 } }
+      subscriber_ids: { $not: { $size: 0 } },
     }).exec()
 
     await ctx.render('pages/topics', {
       topics: topics.sort(
         (a, b) => b.subscriber_ids.length - a.subscriber_ids.length
       ),
-      domain: DOMAIN
+      domain: DOMAIN,
     })
   })
 
-  router.get('/topics/:name', async ctx => {
+  router.get('/topics/:name', async (ctx) => {
     const { name } = ctx.params
 
     const res = await HNCrawler.fetchArticlesByTopics([name], 14)
 
     await ctx.render('pages/sample', {
       topics: res,
-      domain: DOMAIN
+      domain: DOMAIN,
     })
   })
 
@@ -90,17 +92,19 @@ module.exports = function(router) {
 
     if (email === '') {
       ctx.session.error = {
-        message: 'Please fill out your Email.'
+        message: 'Please fill out your Email.',
       }
       ctx.redirect('/#subscribe')
       return next()
     }
 
-    const topicList = topics.split(',').map(topic => topic.trim().toLowerCase())
+    const topicList = topics
+      .split(',')
+      .map((topic) => topic.trim().toLowerCase())
 
     if (topicList.length > 5) {
       ctx.session.error = {
-        message: 'Number of topics should not be more than 5.'
+        message: 'Number of topics should not be more than 5.',
       }
       ctx.redirect('/#subscribe')
       return next()
@@ -115,6 +119,9 @@ module.exports = function(router) {
       console.log('User with email: %s already exsits.', email)
       user.token = token
       await user.save()
+
+      const link = `${DOMAIN}/update?email=${email}&topics=${topics}&token=${token}`
+
       await Mailer.send({
         to: email,
         subject: 'Please Verify Your HN Mail Update',
@@ -123,19 +130,22 @@ module.exports = function(router) {
           engine: 'pug',
           context: {
             topics: topicString,
-            link: `${DOMAIN}/update?email=${email}&topics=${topics}&token=${token}`,
-            unsubLink
-          }
-        }
+            link: encodeURI(link),
+            unsubLink: encodeURI(unsubLink),
+          },
+        },
       })
       await ctx.render('pages/update-verification', {
         email,
-        topics: topicString
+        topics: topicString,
       })
     } else {
       console.log('Saving user with email: %s', email)
       user = new User({ email, token })
       await user.save()
+
+      const link = `${DOMAIN}/verify?email=${email}&topics=${topics}&token=${token}`
+
       await Mailer.send({
         to: email,
         subject: 'Please Verify Your HN Mail Account',
@@ -143,33 +153,33 @@ module.exports = function(router) {
           name: 'src/views/emails/verification.pug',
           engine: 'pug',
           context: {
-            link: `${DOMAIN}/verify?email=${email}&topics=${topics}&token=${token}`,
-            unsubLink
-          }
-        }
+            link: encodeURI(link),
+            unsubLink: encodeURI(unsubLink),
+          },
+        },
       })
 
       await ctx.render('pages/verification', {
         email,
-        topics: topicString
+        topics: topicString,
       })
     }
   })
 
-  router.get('/verify', async ctx => {
+  router.get('/verify', async (ctx) => {
     const { email, topics, token } = ctx.request.query
     const user = await User.findOne({ email, token }).exec()
 
     if (user) {
       const topicList = topics
         .split(',')
-        .map(topic => topic.trim().toLowerCase())
+        .map((topic) => topic.trim().toLowerCase())
       user.topics = topicList
       user.is_verified = true
       user.is_subscribed = true
       await user.save()
 
-      topicList.forEach(async name => {
+      topicList.forEach(async (name) => {
         let topic = await Topic.findOne({ name }).exec()
 
         if (topic) {
@@ -186,34 +196,34 @@ module.exports = function(router) {
       const topicString = topicList.join(', ').toUpperCase()
       const subscribers = await User.find({
         is_verified: true,
-        is_subscribed: true
+        is_subscribed: true,
       }).exec()
 
       await Mailer.send({
         to: testEmailAddress,
         subject: `New user joined HN Mail`,
-        text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal subscribers: ${subscribers.length}`
+        text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal subscribers: ${subscribers.length}`,
       })
 
       await ctx.render('pages/welcome', {
-        topics: topicList.join(', ').toUpperCase()
+        topics: topicList.join(', ').toUpperCase(),
       })
     } else {
       ctx.status = 401
     }
   })
 
-  router.get('/update', async ctx => {
+  router.get('/update', async (ctx) => {
     const { email, topics, token } = ctx.request.query
     const user = await User.findOne({ email, token }).exec()
 
     if (user) {
       const topicList = topics
         .split(',')
-        .map(topic => topic.trim().toLowerCase())
+        .map((topic) => topic.trim().toLowerCase())
       const topicsToBeRemoved = R.difference(user.topics, topicList)
 
-      topicsToBeRemoved.forEach(async name => {
+      topicsToBeRemoved.forEach(async (name) => {
         const topic = await Topic.findOne({ name }).exec()
         topic.subscriber_ids = R.without([user.id], topic.subscriber_ids)
         await topic.save()
@@ -223,7 +233,7 @@ module.exports = function(router) {
       user.is_subscribed = true
       await user.save()
 
-      topicList.forEach(async name => {
+      topicList.forEach(async (name) => {
         let topic = await Topic.findOne({ name }).exec()
 
         if (topic) {
@@ -238,19 +248,19 @@ module.exports = function(router) {
       })
 
       await ctx.render('pages/update-complete', {
-        topics: topicList.join(', ').toUpperCase()
+        topics: topicList.join(', ').toUpperCase(),
       })
     } else {
       ctx.status = 401
     }
   })
 
-  router.get('/unsubscribe', async ctx => {
+  router.get('/unsubscribe', async (ctx) => {
     const { email, token } = ctx.request.query
     const user = await User.findOne({ email, token }).exec()
 
     if (user) {
-      user.topics.forEach(async name => {
+      user.topics.forEach(async (name) => {
         const topic = await Topic.findOne({ name }).exec()
         topic.subscriber_ids = R.without([user.id], topic.subscriber_ids)
         await topic.save()
@@ -260,7 +270,7 @@ module.exports = function(router) {
       user.is_subscribed = false
       await user.save()
       await ctx.render('pages/unsubscribed', {
-        email
+        email,
       })
     } else {
       ctx.status = 401

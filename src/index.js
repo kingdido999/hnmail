@@ -12,7 +12,8 @@ const route = require('./route')
 
 mongoose.connect('mongodb://localhost/hnmail', {
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useUnifiedTopology: true,
 })
 
 const PORT = 3000
