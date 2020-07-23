@@ -30,6 +30,7 @@ cache.configure(
 const app = new Koa()
 
 app.keys = ['some secret hurr']
+app.use(cache.middleware())
 app.use(session(app))
 app.use(serve('src/assets'))
 app.use(views(path.join(__dirname, '/views'), { extension: 'pug' }))

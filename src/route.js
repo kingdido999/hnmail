@@ -114,13 +114,14 @@ module.exports = function (router) {
     let user = await User.findOne({ email }).exec()
     const token = nanoid()
     const unsubLink = `${DOMAIN}/unsubscribe?email=${email}&token=${token}`
+    const escapedEmail = email.replace('+', encodeURIComponent('+'))
 
     if (user) {
       console.log('User with email: %s already exsits.', email)
       user.token = token
       await user.save()
 
-      const link = `${DOMAIN}/update?email=${email}&topics=${topics}&token=${token}`
+      const link = `${DOMAIN}/update?email=${escapedEmail}&topics=${topics}&token=${token}`
 
       await Mailer.send({
         to: email,
@@ -130,8 +131,8 @@ module.exports = function (router) {
           engine: 'pug',
           context: {
             topics: topicString,
-            link: encodeURI(link),
-            unsubLink: encodeURI(unsubLink),
+            link,
+            unsubLink,
           },
         },
       })
@@ -144,7 +145,7 @@ module.exports = function (router) {
       user = new User({ email, token })
       await user.save()
 
-      const link = `${DOMAIN}/verify?email=${email}&topics=${topics}&token=${token}`
+      const link = `${DOMAIN}/verify?email=${escapedEmail}&topics=${topics}&token=${token}`
 
       await Mailer.send({
         to: email,
@@ -153,8 +154,8 @@ module.exports = function (router) {
           name: 'src/views/emails/verification.pug',
           engine: 'pug',
           context: {
-            link: encodeURI(link),
-            unsubLink: encodeURI(unsubLink),
+            link,
+            unsubLink,
           },
         },
       })
