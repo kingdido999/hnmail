@@ -5,6 +5,7 @@ const serve = require('koa-static')
 const views = require('koa-views')
 const session = require('koa-session')
 const koaBody = require('koa-body')
+const cache = require('koa-cache-lite')
 const mongoose = require('mongoose')
 const schedule = require('node-schedule')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
@@ -17,6 +18,14 @@ mongoose.connect('mongodb://localhost/hnmail', {
 })
 
 const PORT = 3000
+
+cache.configure(
+  {
+    '/': 6000,
+    '/sample': 6000,
+  },
+  { debug: true }
+)
 
 const app = new Koa()
 

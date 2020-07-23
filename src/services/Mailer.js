@@ -21,8 +21,7 @@ class Mailer {
       mailOptions
     )
 
-    console.log('Sending mail...')
-    console.table(mailOptions)
+    console.log('Sending mail: %o', mailOptions)
 
     try {
       const info = await transporter.sendMail(mergedOptions)
