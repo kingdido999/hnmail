@@ -5,7 +5,6 @@ const serve = require('koa-static')
 const views = require('koa-views')
 const session = require('koa-session')
 const koaBody = require('koa-body')
-const cache = require('koa-cache-lite')
 const mongoose = require('mongoose')
 const schedule = require('node-schedule')
 const HackerNewsMailer = require('./services/HackerNewsMailer')
@@ -19,21 +18,10 @@ mongoose.connect('mongodb://localhost/hnmail', {
 })
 
 const PORT = 3000
-const CACHE_TIMEOUT = 10000
-
-cache.configure(
-  {
-    '/': CACHE_TIMEOUT,
-    '/sample': CACHE_TIMEOUT,
-    '/topics': CACHE_TIMEOUT,
-  },
-  { debug: false }
-)
 
 const app = new Koa()
 
 app.keys = secrets
-app.use(cache.middleware())
 app.use(session(app))
 app.use(serve('src/assets'))
 app.use(views(path.join(__dirname, '/views'), { extension: 'pug' }))

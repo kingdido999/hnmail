@@ -117,7 +117,6 @@ module.exports = function (router) {
     const escapedEmail = email.replace('+', encodeURIComponent('+'))
 
     if (user) {
-      console.log('User with email: %s already exsits.', email)
       user.token = token
       await user.save()
 
@@ -125,7 +124,7 @@ module.exports = function (router) {
 
       await Mailer.send({
         to: email,
-        subject: 'Please Verify Your HN Mail Update',
+        subject: 'Please Verify Your Topics Update',
         template: {
           name: 'src/views/emails/update.pug',
           engine: 'pug',
@@ -141,7 +140,6 @@ module.exports = function (router) {
         topics: topicString,
       })
     } else {
-      console.log('Saving user with email: %s', email)
       user = new User({ email, token })
       await user.save()
 
@@ -149,7 +147,7 @@ module.exports = function (router) {
 
       await Mailer.send({
         to: email,
-        subject: 'Please Verify Your HN Mail Account',
+        subject: 'Please Verify Your Account',
         template: {
           name: 'src/views/emails/verification.pug',
           engine: 'pug',
@@ -184,10 +182,8 @@ module.exports = function (router) {
         let topic = await Topic.findOne({ name }).exec()
 
         if (topic) {
-          console.log(`Topic ${name} already exists.`)
           topic.subscriber_ids = R.uniq([...topic.subscriber_ids, user.id])
         } else {
-          console.log(`Saving topic: ${name}`)
           topic = new Topic({ name, subscriber_ids: [user.id] })
         }
 
@@ -202,7 +198,7 @@ module.exports = function (router) {
 
       await Mailer.send({
         to: testEmailAddress,
-        subject: `New user joined HN Mail`,
+        subject: 'New user joined',
         text: `Email: ${email} \r\nTopics: ${topicString} \r\nTotal subscribers: ${subscribers.length}`,
       })
 
@@ -238,10 +234,8 @@ module.exports = function (router) {
         let topic = await Topic.findOne({ name }).exec()
 
         if (topic) {
-          console.log(`Topic ${name} already exists.`)
           topic.subscriber_ids = R.uniq([...topic.subscriber_ids, user.id])
         } else {
-          console.log(`Saving topic: ${name}`)
           topic = new Topic({ name, subscriber_ids: [user.id] })
         }
 

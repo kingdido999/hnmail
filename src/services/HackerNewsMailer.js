@@ -6,7 +6,7 @@ const Newsletter = require('../models/Newsletter')
 const HackerNewsCrawler = require('./HackerNewsCrawler')
 const Mailer = require('./Mailer')
 const _ = require('lodash')
-const { isLocal, testEmailAddress, showAds } = require('../../.env')
+const { isLocal, showAds } = require('../../.env')
 const DOMAIN = isLocal ? 'http://localhost:3000' : 'https://hnmail.io'
 
 class HackerNewsMailer {
@@ -17,43 +17,29 @@ class HackerNewsMailer {
     mongoose.connect('mongodb://localhost/hnmail')
 
     const topics = await Topic.find({
-      subscriber_ids: { $not: { $size: 0 } }
+      subscriber_ids: { $not: { $size: 0 } },
     }).exec()
 
     const users = await User.find({
       is_verified: true,
-      is_subscribed: true
+      is_subscribed: true,
     }).exec()
 
-    const topicNames = topics.map(topic => topic.name)
-    let results
+    const topicNames = topics.map((topic) => topic.name)
+    let results = await HackerNewsCrawler.fetchArticlesByTopics(topicNames)
 
-    try {
-      results = await HackerNewsCrawler.fetchArticlesByTopics(topicNames)
-      console.log(results)
-    } catch (err) {
-      console.error('Failed to fetch articles.')
-
-      await Mailer.send({
-        to: testEmailAddress,
-        subject: '[HNMail Exception] Failed to fetch articles by topcis',
-        text: err.toString()
-      })
-
-      throw err
-    }
-
-    users.forEach(async user => {
+    users.forEach(async (user) => {
       const userTopics = R.pickAll(user.topics, results)
       const subject = getRandomTitleFromTopics(userTopics)
       const newsletter = new Newsletter({
         subject,
         topics: userTopics,
-        subscriber_id: user.id
+        subscriber_id: user.id,
       })
       await newsletter.save()
 
-      console.log('Sending newsletter to %s', user.email)
+      const escapedEmail = user.email.replace('+', encodeURIComponent('+'))
+
       await Mailer.send({
         to: user.email,
         subject,
@@ -63,22 +49,21 @@ class HackerNewsMailer {
           context: {
             topics: userTopics,
             domain: DOMAIN,
-            unsubLink: `${DOMAIN}/unsubscribe?email=${user.email}&token=${user.token}`,
-            showAds
-          }
-        }
+            unsubLink: `${DOMAIN}/unsubscribe?email=${escapedEmail}&token=${user.token}`,
+            showAds,
+          },
+        },
       })
-      console.log('Sending newsletter complete.')
     })
   }
 }
 
 function getRandomTitleFromTopics(topics) {
-  const nonEmptyTopics = R.filter(topic => topic.length > 0, topics)
+  const nonEmptyTopics = R.filter((topic) => topic.length > 0, topics)
   if (Object.keys(nonEmptyTopics).length > 0) {
     return _.sample(nonEmptyTopics)[0].title
   } else {
-    return 'Please Update Your HN Mail Topics'
+    return 'Please Update Your Topics'
   }
 }
 
