@@ -2,7 +2,6 @@ const R = require('ramda')
 const nanoid = require('nanoid')
 const User = require('./models/User')
 const Topic = require('./models/Topic')
-const Newsletter = require('./models/Newsletter')
 const Mailer = require('./services/Mailer')
 const HNCrawler = require('./services/HackerNewsCrawler')
 const { testEmailAddress, isLocal } = require('../.env')
@@ -22,12 +21,6 @@ module.exports = function (router) {
       subscriber_ids: { $not: { $size: 0 } },
     }).exec()
 
-    const newsletters = await Newsletter.find({}).exec()
-    const subscribers = await User.find({
-      is_verified: true,
-      is_subscribed: true,
-    }).exec()
-
     const hotTopics = topics
       .sort((a, b) => b.subscriber_ids.length - a.subscriber_ids.length)
       .slice(0, 20)
@@ -35,8 +28,6 @@ module.exports = function (router) {
     await ctx.render('pages/home', {
       topics: hotTopics,
       topicsCount: topics.length,
-      newsletterCount: newsletters.length,
-      subscriberCount: subscribers.length,
       error: ctx.session.error,
     })
 
@@ -96,7 +87,7 @@ module.exports = function (router) {
   router.get('/topics/:name', async (ctx) => {
     const { name } = ctx.params
 
-    const res = await HNCrawler.fetchArticlesByTopics([name], 14)
+    const res = await HNCrawler.fetchArticlesByTopics([name])
 
     await ctx.render('pages/sample', {
       topics: res,
