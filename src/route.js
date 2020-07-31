@@ -8,6 +8,14 @@ const HNCrawler = require('./services/HackerNewsCrawler')
 const { testEmailAddress, isLocal } = require('../.env')
 const DOMAIN = isLocal ? `http://localhost:3000` : 'https://hnmail.io'
 
+const INVALID_TOPICS_ERROR =
+  'Topics must not contain numbers or special characters other than ","'
+const TOO_MANY_TOPICS_ERROR = 'Number of topics should not be more than 5'
+
+const isInvalidTopics = (topics) => {
+  return /[`!@#$%^&*()_+\-=\[\]{};':"\\|.<>\/?~\d]/.test(topics)
+}
+
 module.exports = function (router) {
   router.get('/', async (ctx) => {
     const topics = await Topic.find({
@@ -43,13 +51,22 @@ module.exports = function (router) {
       return next()
     }
 
+    if (isInvalidTopics(topics)) {
+      ctx.session.error = {
+        message: INVALID_TOPICS_ERROR,
+      }
+
+      ctx.redirect('/#subscribe')
+      return next()
+    }
+
     const topicList = topics
       .split(',')
       .map((topic) => topic.trim().toLowerCase())
 
     if (topicList.length > 5) {
       ctx.session.error = {
-        message: 'Number of topics should not be more than 5.',
+        message: TOO_MANY_TOPICS_ERROR,
       }
       ctx.redirect('/#subscribe')
       return next()
@@ -92,7 +109,15 @@ module.exports = function (router) {
 
     if (email === '') {
       ctx.session.error = {
-        message: 'Please fill out your Email.',
+        message: 'Please fill out your Email',
+      }
+      ctx.redirect('/#subscribe')
+      return next()
+    }
+
+    if (isInvalidTopics(topics)) {
+      ctx.session.error = {
+        message: INVALID_TOPICS_ERROR,
       }
       ctx.redirect('/#subscribe')
       return next()
@@ -104,7 +129,7 @@ module.exports = function (router) {
 
     if (topicList.length > 5) {
       ctx.session.error = {
-        message: 'Number of topics should not be more than 5.',
+        message: TOO_MANY_TOPICS_ERROR,
       }
       ctx.redirect('/#subscribe')
       return next()
